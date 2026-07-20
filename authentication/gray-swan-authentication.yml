@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.grayswan.ai/cygnal/creating-completions
+api: Cygnal
+summary: >-
+  The Gray Swan AI (Cygnal) API authenticates every request with a first-party
+  API key sent in the custom `grayswan-api-key` request header. Keys are minted
+  in the Gray Swan platform. Cygnal proxy requests additionally require an
+  explicit policy selector header (`policy-id` or `agent-id`) — there is no
+  default policy. The published OpenAPI does not declare `securitySchemes`; the
+  scheme below is captured from the provider's authentication documentation.
+schemes:
+  - id: grayswan-api-key
+    type: apiKey
+    in: header
+    name: grayswan-api-key
+    description: >-
+      First-party API key issued from the Gray Swan platform
+      (https://platform.grayswan.ai). Sent on every request.
+    docs: https://docs.grayswan.ai/cygnal/creating-completions
+    key_provisioning: https://platform.grayswan.ai
+required_companion_headers:
+  - name: policy-id
+    required: conditional
+    description: >-
+      Identifier of the Cygnal policy to enforce on this request. Required on
+      /cygnal/* proxy endpoints unless an agent-id is supplied. Missing both
+      returns `400 No policy specified` — Cygnal never applies a default policy.
+  - name: agent-id
+    required: conditional
+    description: >-
+      Identifier of an agent that has an associated policy; an alternative to
+      policy-id for selecting the enforced policy.
+notes:
+  - No OAuth/OIDC scopes surface — key-auth only, so no scopes/ artifact.
+  - Platform login/waitlist is brokered by Stytch (and Okta for enterprise SSO).
