@@ -1,0 +1,223 @@
+openapi: 3.1.0
+info:
+  title: Gray Swan AI Activity API
+  description: API for Gray Swan AI
+  version: 0.1.0
+servers:
+- url: https://api.grayswan.ai
+tags:
+- name: Activity
+paths:
+  /activity/export:
+    get:
+      summary: Export Activity Data
+      description: 'Export Cygnal activity data for the authenticated organization.
+
+
+        Requires admin role.'
+      operationId: export_activity_data_activity_export_get
+      parameters:
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Cursor for pagination (ObjectId from previous response)
+          title: Cursor
+        description: Cursor for pagination (ObjectId from previous response)
+      - name: since
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO 8601 timestamp to filter events after this time
+          title: Since
+        description: ISO 8601 timestamp to filter events after this time
+      - name: until
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO 8601 timestamp to filter events before this time
+          title: Until
+        description: ISO 8601 timestamp to filter events before this time
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          description: Maximum number of activity records to return
+          default: 1000
+          title: Limit
+        description: Maximum number of activity records to return
+      - name: search
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Free-text search is temporarily unavailable and ignored; use cursor, time range, or alarm filters instead.
+          title: Search
+        description: Free-text search is temporarily unavailable and ignored; use cursor, time range, or alarm filters instead.
+      - name: alarm_only
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Only return events where alarm=True
+          default: false
+          title: Alarm Only
+        description: Only return events where alarm=True
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityExportResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardErrorResponse'
+          description: Internal Server Error
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Activity
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    JSONPrimitive:
+      anyOf:
+      - type: string
+      - type: integer
+      - type: number
+      - type: boolean
+      - type: 'null'
+    JSONValue-Output:
+      anyOf:
+      - $ref: '#/components/schemas/JSONPrimitive'
+      - items:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: array
+      - additionalProperties:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: object
+    StandardErrorResponse:
+      properties:
+        error:
+          type: boolean
+          title: Error
+          default: true
+        message:
+          type: string
+          title: Message
+        detail:
+          type: string
+          title: Detail
+        error_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Code
+        details:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/JSONValue-Output'
+            type: object
+          - type: 'null'
+          title: Details
+      type: object
+      required:
+      - message
+      - detail
+      title: StandardErrorResponse
+    ActivityExportResponse:
+      properties:
+        activities:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Activities
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+        has_more:
+          type: boolean
+          title: Has More
+      type: object
+      required:
+      - activities
+      - next_cursor
+      - has_more
+      title: ActivityExportResponse
+      description: Response format for exporting organization activity records.
