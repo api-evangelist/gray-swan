@@ -1,0 +1,6 @@
+Contact: mailto:security@grayswan.ai
+Policy: https://grayswan.ai/security
+Acknowledgments: https://grayswan.ai/security#acknowledgments
+Preferred-Languages: en
+Expires: 2027-01-22T00:00:00Z
+Canonical: https://grayswan.ai/.well-known/security.txt

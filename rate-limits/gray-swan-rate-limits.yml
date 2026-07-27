@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.grayswan.ai/cygnal/creating-completions
+api: Cygnal
+summary: >-
+  Cygnal enforces token-based rate limits. On the free tier the published
+  limits are 200,000 tokens/minute and 10,000,000 tokens/day. Cygnal degrades
+  gracefully: when quota is exhausted it still proxies the request to the
+  upstream model provider, but without filtering/monitoring applied.
+tiers:
+  - name: free
+    limits:
+      - unit: tokens_per_minute
+        value: 200000
+      - unit: tokens_per_day
+        value: 10000000
+    over_quota_behavior: >-
+      Request is still proxied to the upstream provider, but Cygnal filtering
+      and threat monitoring are not applied.
+signaling:
+  note: >-
+    Rate-limit response headers are not documented in the public reference;
+    limits are described narratively in the completions guide.

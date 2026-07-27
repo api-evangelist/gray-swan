@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of grayswan.ai + api.grayswan.ai hosts
+hosts:
+  - host: https://www.grayswan.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: gray-swan-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://grayswan.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        note: canonical location referenced by the security.txt
+  - host: https://api.grayswan.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /openapi.json
+        status: 200
+        note: OpenAPI 3.1 spec (not a .well-known path) captured to openapi/
+  - host: https://platform.grayswan.ai
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: >-
+          Returns the SvelteKit SPA login shell, NOT a valid OIDC discovery
+          document — excluded (auth is brokered by Stytch/Okta, not this path).

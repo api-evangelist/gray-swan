@@ -1,22 +1,92 @@
 aid: gray-swan
 name: Gray Swan
-description: 'Gray Swan is a company surfaced as a portfolio company of wing-venture-capital and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Gray Swan AI is an AI security company that helps enterprises deploy AI with
+  confidence. Its Cygnal product is a real-time, drop-in secure proxy that
+  fronts LLM providers (OpenAI, Anthropic, and Gemini request formats) with
+  input/output filtering and threat monitoring for jailbreaks and prompt
+  injection, governed by versioned enforcement Policies managed over a REST API.
+  Gray Swan also operates Shade (an adversarial red-teaming platform), Arena (a
+  global adversarial red-teaming network), and adversarial model evaluations
+  that frontier AI labs run before shipping. The company is SOC 2 Type 2 and
+  Cyber Essentials certified.
 url: https://raw.githubusercontent.com/api-evangelist/gray-swan/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - wing-venture-capital
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/6614467b00e631b0f073e2b7/66886e33ca0b8f284d3b3b40_ca18847e7b3f6e2e7038dac7bd3846ce_Gray%20Swan%3DWhite%20Horizontal.svg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Ai
-apis: []
+- AI Security
+- LLM Security
+- Guardrails
+- Red Teaming
+- AI Governance
+- Prompt Injection
+- Model Safety
+- API Security
+apis:
+- aid: gray-swan:gray-swan-activity-api
+  name: Gray Swan Activity API
+  description: The Activity API from Gray Swan — 1 operation(s) for activity.
+  humanURL: https://docs.grayswan.ai/api-reference
+  baseURL: https://api.grayswan.ai
+  tags:
+  - Activity
+  properties:
+  - type: OpenAPI
+    url: openapi/gray-swan-activity-api-openapi.yml
+  - type: Documentation
+    url: https://docs.grayswan.ai/
+  - type: APIReference
+    url: https://docs.grayswan.ai/api-reference
+- aid: gray-swan:gray-swan-cygnal-api
+  name: Gray Swan Cygnal API
+  description: The Cygnal API from Gray Swan — 7 operation(s) for cygnal.
+  humanURL: https://docs.grayswan.ai/api-reference
+  baseURL: https://api.grayswan.ai
+  tags:
+  - Cygnal
+  properties:
+  - type: OpenAPI
+    url: openapi/gray-swan-cygnal-api-openapi.yml
+  - type: Documentation
+    url: https://docs.grayswan.ai/
+  - type: APIReference
+    url: https://docs.grayswan.ai/api-reference
+- aid: gray-swan:gray-swan-policies-api
+  name: Gray Swan Policies API
+  description: The Policies API from Gray Swan — 8 operation(s) for policies.
+  humanURL: https://docs.grayswan.ai/api-reference
+  baseURL: https://api.grayswan.ai
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/gray-swan-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.grayswan.ai/
+  - type: APIReference
+    url: https://docs.grayswan.ai/api-reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +95,58 @@ maintainers:
 common:
 - type: Website
   url: https://www.grayswan.ai/
+- type: DeveloperPortal
+  url: https://docs.grayswan.ai/
+- type: Documentation
+  url: https://docs.grayswan.ai/
+- type: APIReference
+  url: https://docs.grayswan.ai/api-reference
+- type: Quickstart
+  url: https://docs.grayswan.ai/cygnal/creating-completions
+- type: SignUp
+  url: https://platform.grayswan.ai
+- type: Blog
+  url: https://www.grayswan.ai/blog
+- type: GitHubOrganization
+  url: https://github.com/GraySwanAI
+- type: TermsOfService
+  url: https://www.grayswan.ai/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.grayswan.ai/privacy-policy
+- type: Authentication
+  url: authentication/gray-swan-authentication.yml
+- type: ErrorCatalog
+  url: errors/gray-swan-problem-types.yml
+- type: RateLimits
+  url: rate-limits/gray-swan-rate-limits.yml
+- type: Conventions
+  url: conventions/gray-swan-conventions.yml
+- type: DataModel
+  url: data-model/gray-swan-data-model.yml
+- type: Lifecycle
+  url: lifecycle/gray-swan-lifecycle.yml
+- type: Conformance
+  url: conformance/gray-swan-conformance.yml
+- type: Compliance
+  url: conformance/gray-swan-conformance.yml
+- type: LLMsTxt
+  url: llms/gray-swan-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: WellKnown
+  url: well-known/gray-swan-well-known.yml
+- type: SecurityTxt
+  url: well-known/gray-swan-security.txt
+- type: Security
+  url: https://grayswan.ai/security
+- type: VulnerabilityDisclosure
+  url: security/gray-swan-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/gray-swan-domain-security.yml
+- type: TrustCenter
+  url: security/gray-swan-trust-center.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

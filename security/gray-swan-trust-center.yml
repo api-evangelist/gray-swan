@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://trust.grayswan.ai/
+url: https://trust.grayswan.ai/
+platform: SafeBase
+certifications:
+- SOC 2 Type 2
+- Cyber Essentials
+evidence:
+- source: https://trust.grayswan.ai/
+  keywords:
+  - soc 2 type 2
+  - cyber essentials
+  - trust center
+  - compliance certification

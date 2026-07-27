@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/gray-swan-cygnal-openapi.json
+note: >-
+  Gray Swan does NOT publish a hosted/remote MCP server (its docs' "MCP & Tool
+  Integration" refers to PROTECTING MCP-connected agents with Cygnal, not to an
+  MCP server it operates). This is a DERIVED candidate tool list mapped from the
+  Cygnal OpenAPI operations, for reference only. No canonical MCPServer pointer
+  is wired in apis.yml because no server is genuinely present.
+server:
+  name: gray-swan-cygnal
+  transport: http
+  url: null
+tools:
+  - name: cygnal_monitor
+    description: Monitor messages/tools for policy violations without proxying inference.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#cygnal_monitor_cygnal_monitor_post
+  - name: cygnal_chat_completions
+    description: OpenAI-compatible chat completions proxied with Cygnal filtering.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#cygnal_completions_cygnal_v1_chat_completions_post
+  - name: cygnal_anthropic_messages
+    description: Anthropic Messages-compatible endpoint proxied with Cygnal filtering.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#cygnal_anthropic_messages_cygnal_v1_messages_post
+  - name: list_policies
+    description: List enforcement policies.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#get_policies_policies_get
+  - name: create_policy
+    description: Create a new enforcement policy.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#create_policy_policies_post
+  - name: get_policy
+    description: Fetch a policy by id.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#get_policy_by_id_policies__policy_id__get
+  - name: update_policy
+    description: Update a policy by id.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#update_policy_policies__policy_id__put
+  - name: delete_policy
+    description: Delete a policy by id.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#delete_policy_policies__policy_id__delete
+  - name: get_policy_versions
+    description: List historical versions of a policy.
+    source_operation: openapi/gray-swan-cygnal-openapi.json#get_policy_versions_policies__policy_id__versions_get

@@ -1,0 +1,48 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Gray Swan AI (Cygnal) API
+  version: 1.0.0
+extends: ../openapi/gray-swan-cygnal-openapi.json
+x-provenance:
+  generated: '2026-07-19'
+  method: generated
+  source: openapi/gray-swan-cygnal-openapi.json + docs.grayswan.ai
+  note: >-
+    Non-destructive overlay capturing enrichments discovered from the Cygnal
+    docs that are absent from the raw spec (API-key security scheme, policy
+    selector headers, provider description). Never mutates the original spec.
+actions:
+  - target: $.info
+    update:
+      description: >-
+        Cygnal is Gray Swan AI's real-time AI security proxy. It fronts LLM
+        providers (OpenAI, Anthropic, Gemini formats) with input/output
+        filtering and threat monitoring for jailbreaks and prompt injection,
+        and manages enforcement Policies with versioning. Drop-in: change only
+        the base URL. Auth via the grayswan-api-key header plus a policy-id or
+        agent-id selector.
+      x-authentication:
+        scheme: apiKey
+        header: grayswan-api-key
+        docs: https://docs.grayswan.ai/cygnal/creating-completions
+  - target: $.components
+    update:
+      securitySchemes:
+        GraySwanApiKey:
+          type: apiKey
+          in: header
+          name: grayswan-api-key
+          description: First-party API key from https://platform.grayswan.ai
+  - target: $.paths['/cygnal/v1/chat/completions'].post
+    update:
+      x-required-headers:
+        - name: grayswan-api-key
+          required: true
+        - name: policy-id
+          required: conditional
+          description: Required unless agent-id is supplied; no default policy.
+        - name: agent-id
+          required: conditional
+      x-rate-limits:
+        free_tier: 200000 tokens/min, 10000000 tokens/day
+        over_quota: proxied without filtering

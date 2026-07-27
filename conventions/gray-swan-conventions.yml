@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.grayswan.ai/cygnal/creating-completions
+api: Cygnal
+summary: >-
+  Cross-cutting semantics for the Gray Swan AI (Cygnal) API — a drop-in secure
+  proxy that fronts LLM providers. Derived from the published OpenAPI 3.1 and
+  enriched from the Cygnal completions documentation.
+auth_style:
+  scheme: apiKey
+  header: grayswan-api-key
+  policy_selector: policy-id or agent-id header (required on /cygnal/* proxy)
+  see: authentication/gray-swan-authentication.yml
+compatibility:
+  description: >-
+    Drop-in compatible with major LLM provider request/response formats — change
+    only the base URL, keep your existing SDK.
+  surfaces:
+    - openai_chat_completions: POST /cygnal/v1/chat/completions
+    - openai_responses: POST /cygnal/responses
+    - anthropic_messages: POST /cygnal/v1/messages
+    - gemini_generate: POST /cygnal/v1beta/models/{model}:generateContent
+    - gemini_stream: POST /cygnal/v1beta/models/{model}:streamGenerateContent
+    - monitor_only: POST /cygnal/monitor
+control_headers:
+  policy_rules:
+    prefixes: [ "rule-<name>", "cygnal-rule-<name>", "policy-rule-<name>" ]
+    description: Attach ad-hoc custom rules to a request.
+  thresholds:
+    names: [ pre-violation, post-violation, pre-jailbreak, post-violation-jb ]
+    range: 0.0 - 1.0 (float)
+    semantics: Lower = stricter filtering; higher = more permissive.
+  reasoning_mode:
+    header: reasoning-mode
+    values: [ off (default), hybrid, thinking ]
+idempotency:
+  supported: false
+  note: No idempotency key/header is documented for this API.
+pagination:
+  style: none-documented
+  note: Policy list endpoints return arrays; no cursor/offset params documented.
+error_envelope:
+  shape: 'StandardErrorResponse { error, message, detail, error_code, details }'
+  validation: 'HTTPValidationError { detail[]: loc, msg, type }'
+  see: errors/gray-swan-problem-types.yml
+rate_limiting:
+  free_tier: 200000 tokens/min, 10000000 tokens/day
+  over_quota: proxied without filtering
+  see: rate-limits/gray-swan-rate-limits.yml
+versioning:
+  spec_version: 0.1.0
+  path_versioning: /cygnal/v1/... and /cygnal/v1beta/... mirror upstream provider versions
+  see: lifecycle/gray-swan-lifecycle.yml
+violation_semantics:
+  description: >-
+    A blocked request returns HTTP 200 with finish_reason="violation" and a
+    refusal message rather than an HTTP error.

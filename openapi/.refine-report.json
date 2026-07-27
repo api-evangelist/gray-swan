@@ -1,0 +1,18 @@
+{
+  "provider": "gray-swan",
+  "sources": [
+    "gray-swan-activity-api-openapi.yml",
+    "gray-swan-cygnal-api-openapi.yml",
+    "gray-swan-policies-api-openapi.yml"
+  ],
+  "outputs": [
+    "gray-swan-activity-api-openapi.yml",
+    "gray-swan-cygnal-api-openapi.yml",
+    "gray-swan-policies-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

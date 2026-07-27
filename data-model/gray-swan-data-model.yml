@@ -1,0 +1,66 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gray-swan-cygnal-openapi.json
+api: Cygnal
+summary: >-
+  Entity-relationship view derived from the Cygnal OpenAPI 3.1 component
+  schemas and path structure. Two domains: the policy/governance store
+  (Policy, PolicyVersion) and the proxied-inference surface (Conversation,
+  Message, Prompt, Tool).
+entities:
+  - name: Policy
+    schemas: [ PolicyCreateRequest, PolicyUpdateRequest, PolicyDetailResponse, PolicyListResponse ]
+    id_field: policy_id
+    endpoints:
+      - GET /policies
+      - POST /policies
+      - GET /policies/{policy_id}
+      - PUT /policies/{policy_id}
+      - DELETE /policies/{policy_id}
+      - POST /policies/import
+      - POST /policies/bulk-import
+      - GET /policies/export
+    description: A named collection of enforcement rules/thresholds applied by Cygnal.
+  - name: PolicyVersion
+    schemas: [ PolicyVersionSummary, PolicyVersionDetailResponse, PolicyVersionListResponse ]
+    id_field: version_id
+    endpoints:
+      - GET /policies/{policy_id}/versions
+      - GET /policies/{policy_id}/versions/{version_id}
+    description: An immutable historical revision of a Policy.
+  - name: Rule
+    schemas: [ RuleDescription ]
+    description: An individual enforcement rule within a Policy.
+  - name: Conversation
+    schemas: [ Conversation ]
+    description: A sequence of messages evaluated/proxied through Cygnal.
+  - name: Message
+    schemas: [ Message, ChatCompletionRequestMessage, ChatCompletionResponseMessage, MonitorMessage ]
+    description: A single turn (role + content) in a conversation.
+  - name: Prompt
+    schemas: [ Prompt ]
+    description: Input prompt payload evaluated by scanners.
+  - name: Tool
+    schemas: [ Tool, MonitorTool, ToolCall, ToolChoice, ToolUseBlock, Function ]
+    description: Tool/function-calling definitions carried through the proxy.
+relationships:
+  - from: Policy
+    type: has_many
+    to: PolicyVersion
+    via: policy_id
+  - from: PolicyVersion
+    type: belongs_to
+    to: Policy
+    via: policy_id
+  - from: Policy
+    type: has_many
+    to: Rule
+    via: embedded (rules[])
+  - from: Conversation
+    type: has_many
+    to: Message
+    via: embedded (messages[])
+  - from: Message
+    type: has_many
+    to: Tool
+    via: embedded (tool_calls[])

@@ -1,0 +1,19 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/gray-swan-cygnal-openapi.json + docs.grayswan.ai
+api: Cygnal
+skills:
+  - id: gray-swan-secure-completions
+    file: gray-swan-secure-completions.md
+    title: Secure completions through Cygnal
+    operations:
+      - cygnal_completions_cygnal_v1_chat_completions_post
+      - cygnal_monitor_cygnal_monitor_post
+  - id: gray-swan-manage-policies
+    file: gray-swan-manage-policies.md
+    title: Manage Cygnal enforcement policies
+    operations:
+      - get_policies_policies_get
+      - create_policy_policies_post
+      - update_policy_policies__policy_id__put
+      - get_policy_versions_policies__policy_id__versions_get

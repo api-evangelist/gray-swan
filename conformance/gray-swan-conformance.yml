@@ -1,0 +1,39 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gray-swan-cygnal-openapi.json + docs.grayswan.ai + trust.grayswan.ai
+api: Cygnal
+summary: >-
+  Standards / cross-cutting conformance assertions for the Cygnal API, derived
+  from the OpenAPI and enriched from the docs and trust center. Cygnal's design
+  point is wire-compatibility with the major LLM provider request/response
+  formats rather than classic web-API standards.
+conformance:
+  - id: openapi-3.1
+    conforms: true
+    evidence: Published spec is OpenAPI 3.1.0 at https://api.grayswan.ai/openapi.json
+  - id: openai-chat-completions-compat
+    conforms: true
+    evidence: POST /cygnal/v1/chat/completions mirrors the OpenAI Chat Completions contract (drop-in base URL swap).
+  - id: openai-responses-compat
+    conforms: true
+    evidence: POST /cygnal/responses mirrors the OpenAI Responses API.
+  - id: anthropic-messages-compat
+    conforms: true
+    evidence: POST /cygnal/v1/messages mirrors the Anthropic Messages API.
+  - id: gemini-generatecontent-compat
+    conforms: true
+    evidence: POST /cygnal/v1beta/models/{model}:generateContent mirrors Google Gemini generateContent.
+  - id: rfc9457-problem-json
+    conforms: false
+    evidence: Errors use a custom StandardErrorResponse envelope, not application/problem+json.
+  - id: oauth2
+    conforms: false
+    evidence: API-key auth only (grayswan-api-key header); no OAuth2 flows.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency key/header documented.
+compliance_programs:
+  - name: SOC 2 Type 2
+    evidence: https://trust.grayswan.ai/
+  - name: Cyber Essentials
+    evidence: https://trust.grayswan.ai/

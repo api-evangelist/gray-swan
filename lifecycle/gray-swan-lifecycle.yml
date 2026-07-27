@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gray-swan-cygnal-openapi.json + docs.grayswan.ai
+api: Cygnal
+summary: >-
+  Lifecycle facts derived from the published spec and docs. The API advertises
+  version 0.1.0 and uses upstream-mirrored path versioning (/cygnal/v1,
+  /cygnal/v1beta). No public status page, dated changelog page, deprecation
+  policy, or Sunset/Deprecation header usage was found at probe time.
+versioning:
+  spec_version: 0.1.0
+  scheme: path
+  paths:
+    - /cygnal/v1/chat/completions
+    - /cygnal/v1/messages
+    - /cygnal/v1beta/models/{model}:generateContent
+  note: Version segments mirror the proxied upstream provider API versions.
+status_page:
+  present: false
+  probed:
+    - url: https://status.grayswan.ai/
+      result: no response (000)
+deprecation:
+  policy_documented: false
+  deprecated_operations: []
+  sunset_headers_observed: false
+support:
+  security_contact: security@grayswan.ai

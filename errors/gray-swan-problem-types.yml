@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gray-swan-cygnal-openapi.json
+api: Cygnal
+format: custom-json
+note: >-
+  Gray Swan AI does NOT emit RFC 9457 application/problem+json. Errors use a
+  first-party JSON envelope (StandardErrorResponse) plus FastAPI-style
+  validation errors (HTTPValidationError). Status codes and the envelope shape
+  are derived from the published OpenAPI 3.1 responses; titles/remediation are
+  enriched from the docs.
+error_envelope:
+  schema: StandardErrorResponse
+  fields:
+    error: boolean (default true)
+    message: string — human-readable summary
+    detail: string — extended detail
+    error_code: string | null — machine code
+    details: object | null — structured context
+validation_envelope:
+  schema: HTTPValidationError
+  fields:
+    detail: array of { loc[], msg, type, input, ctx }
+status_codes:
+  - status: 400
+    title: Bad Request
+    meaning: >-
+      Malformed request or missing required selector. Notably
+      "400 No policy specified" when neither policy-id nor agent-id is provided.
+    remediation: Supply a valid policy-id or agent-id header and a well-formed body.
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid grayswan-api-key.
+    remediation: Send a valid API key from https://platform.grayswan.ai.
+  - status: 403
+    title: Forbidden
+    meaning: Authenticated key lacks access to the requested policy/resource.
+    remediation: Verify the key's org/policy permissions.
+  - status: 422
+    title: Unprocessable Entity
+    meaning: Request body failed schema validation (HTTPValidationError).
+    remediation: Fix the fields listed in detail[].loc / detail[].msg.
+  - status: 500
+    title: Internal Server Error
+    meaning: Unexpected server error.
+    remediation: Retry with backoff; contact security@grayswan.ai if persistent.
+  - status: 502
+    title: Bad Gateway
+    meaning: Upstream model provider proxied by Cygnal returned an error.
+    remediation: Retry; verify the upstream model/provider configuration.
+domain_signals:
+  - name: violation refusal
+    description: >-
+      Not an HTTP error — a policy violation returns 200 with
+      finish_reason="violation" and a refusal message
+      ("Sorry, I can't help with that.") in the choice/message.
