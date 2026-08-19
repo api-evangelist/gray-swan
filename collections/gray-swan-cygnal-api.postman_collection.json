@@ -1,0 +1,1858 @@
+{
+  "item": [
+    {
+      "id": "218f3cd8-3c20-4830-a50d-fd6183aa4bd6",
+      "name": "Cygnal",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f4564f6f-2d7c-4d4b-a637-5ce057d5625c",
+          "name": "Cygnal Monitor",
+          "request": {
+            "name": "Cygnal Monitor",
+            "description": {
+              "content": "Monitors content for policy violations.\n\nThis endpoint is used to check if the provided text contains harmful\ncontent or violates a given set of policies.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/monitor-requests) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/monitor)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cygnal",
+                "monitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"tool_call_id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"tool_call_id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"tools\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"categories\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"rules\": {\n    \"key_0\": \"<string>\"\n  },\n  \"reasoning_mode\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scanner_configs\": [\n    {\n      \"key_0\": {\n        \"pii_types\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"key_0\": {\n        \"pii_types\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"key_1\": {\n        \"pii_types\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"key_2\": {\n        \"pii_types\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"litellm_metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1bffb4a0-fa7f-4a2a-a473-8e368f5df4a0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"Hello, this is a test message for monitoring.\",\n  \"reasoning_mode\": \"off\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"violation\": 0,\n  \"observe_violation\": 6812.131180259209,\n  \"ipi\": false,\n  \"mutation\": false,\n  \"scanner_output\": {\n    \"key_0\": 5980.006543332618,\n    \"key_1\": 7148.068224827304\n  },\n  \"reasoning\": \"string\",\n  \"input_tokens\": 2863,\n  \"output_tokens\": 4668,\n  \"activity_id\": \"string\",\n  \"block_message\": \"string\",\n  \"error\": false,\n  \"error_message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d700441-8188-43a2-9270-792501042423",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"Hello, this is a test message for monitoring.\",\n  \"reasoning_mode\": \"off\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b741fe9-9bc6-4100-a837-725b15a49c47",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"Hello, this is a test message for monitoring.\",\n  \"reasoning_mode\": \"off\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "029bc292-88a4-44fd-b1c3-2337f3e22883",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"Hello, this is a test message for monitoring.\",\n  \"reasoning_mode\": \"off\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0914521b-bda5-4435-8fae-cd0c9f0eaad1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"Hello, this is a test message for monitoring.\",\n  \"reasoning_mode\": \"off\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ce16ea3-191b-429f-bc98-f99aba598a3b",
+          "name": "Cygnal Completions",
+          "request": {
+            "name": "Cygnal Completions",
+            "description": {
+              "content": "Create OpenAI-compatible chat completions with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/completions)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cygnal",
+                "chat",
+                "completions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"tool_call_id\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"tool_call_id\": \"<string>\"\n    }\n  ],\n  \"model\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": true\n  },\n  \"frequency_penalty\": \"<number>\",\n  \"logit_bias\": {\n    \"key_0\": \"<number>\",\n    \"key_1\": \"<number>\"\n  },\n  \"logprobs\": \"<boolean>\",\n  \"top_logprobs\": \"<integer>\",\n  \"max_tokens\": \"<integer>\",\n  \"max_completion_tokens\": \"<integer>\",\n  \"modalities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"n\": 1,\n  \"prediction\": {},\n  \"audio\": {},\n  \"presence_penalty\": \"<number>\",\n  \"response_format\": {},\n  \"seed\": \"<integer>\",\n  \"service_tier\": \"<string>\",\n  \"stop\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"tools\": [\n    {\n      \"type\": \"<string>\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"key_0\": false,\n          \"key_1\": \"string\"\n        },\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"key_0\": false,\n          \"key_1\": false,\n          \"key_2\": \"string\"\n        },\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"tool_choice\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\",\n  \"function_call\": \"<string>\",\n  \"moderate_before\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "547f4f17-2ad0-4394-9885-08821a0bc256",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"violation\",\n      \"index\": 2928,\n      \"message\": {\n        \"role\": \"string\",\n        \"content\": \"string\",\n        \"tool_calls\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"logprobs\": \"string\"\n    },\n    {\n      \"finish_reason\": \"length\",\n      \"index\": 2425,\n      \"message\": {\n        \"role\": \"string\",\n        \"content\": \"string\",\n        \"tool_calls\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"logprobs\": \"string\"\n    }\n  ],\n  \"created\": 7639,\n  \"model\": \"string\",\n  \"object\": \"string\",\n  \"system_fingerprint\": \"string\",\n  \"usage\": {\n    \"completion_tokens\": 11,\n    \"prompt_tokens\": 6758,\n    \"total_tokens\": 3741,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 9124,\n      \"audio_tokens\": 7932,\n      \"reasoning_tokens\": 8111,\n      \"rejected_prediction_tokens\": 9585\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 6071,\n      \"cached_tokens\": 4695,\n      \"key_0\": 2639\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8d0afd6-597b-44c4-a378-91e24b7a70df",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf97667f-faac-4b1e-86ba-b32fa174bc6e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3acb5d11-d6a7-4e0c-9a44-e9a1172ef462",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "087fe9e3-3a20-48d4-83a8-59eed7e0cdcb",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc447d9c-6fb6-4b43-b1aa-68e7447e6204",
+          "name": "Cygnal Completions",
+          "request": {
+            "name": "Cygnal Completions",
+            "description": {
+              "content": "Create OpenAI-compatible chat completions with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/completions)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cygnal",
+                "v1",
+                "chat",
+                "completions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"tool_call_id\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"tool_calls\": [\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"function\": {\n            \"arguments\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"tool_call_id\": \"<string>\"\n    }\n  ],\n  \"model\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": true\n  },\n  \"frequency_penalty\": \"<number>\",\n  \"logit_bias\": {\n    \"key_0\": \"<number>\",\n    \"key_1\": \"<number>\"\n  },\n  \"logprobs\": \"<boolean>\",\n  \"top_logprobs\": \"<integer>\",\n  \"max_tokens\": \"<integer>\",\n  \"max_completion_tokens\": \"<integer>\",\n  \"modalities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"n\": 1,\n  \"prediction\": {},\n  \"audio\": {},\n  \"presence_penalty\": \"<number>\",\n  \"response_format\": {},\n  \"seed\": \"<integer>\",\n  \"service_tier\": \"<string>\",\n  \"stop\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"top_p\": \"<number>\",\n  \"tools\": [\n    {\n      \"type\": \"<string>\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"key_0\": false,\n          \"key_1\": \"string\"\n        },\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"function\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"parameters\": {\n          \"key_0\": false,\n          \"key_1\": false,\n          \"key_2\": \"string\"\n        },\n        \"required\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"tool_choice\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\",\n  \"function_call\": \"<string>\",\n  \"moderate_before\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "05c4e326-90ef-4fbf-b983-be800404494a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"violation\",\n      \"index\": 2928,\n      \"message\": {\n        \"role\": \"string\",\n        \"content\": \"string\",\n        \"tool_calls\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"logprobs\": \"string\"\n    },\n    {\n      \"finish_reason\": \"length\",\n      \"index\": 2425,\n      \"message\": {\n        \"role\": \"string\",\n        \"content\": \"string\",\n        \"tool_calls\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"logprobs\": \"string\"\n    }\n  ],\n  \"created\": 7639,\n  \"model\": \"string\",\n  \"object\": \"string\",\n  \"system_fingerprint\": \"string\",\n  \"usage\": {\n    \"completion_tokens\": 11,\n    \"prompt_tokens\": 6758,\n    \"total_tokens\": 3741,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 9124,\n      \"audio_tokens\": 7932,\n      \"reasoning_tokens\": 8111,\n      \"rejected_prediction_tokens\": 9585\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 6071,\n      \"cached_tokens\": 4695,\n      \"key_0\": 2639\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34af8105-b7dc-49f3-a349-73298b954ec3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f467217a-8a9f-4f6b-9bd9-33a90b509b1c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dda24e2-beee-459e-a798-e4f6b7f5b9f5",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bbc2280-eb44-44f5-be4b-0291e9dccf36",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I need you to help me with something.\"\n    }\n  ],\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1729ea8f-f41b-4f70-90cb-14af05eeca27",
+          "name": "Cygnal Anthropic Messages",
+          "request": {
+            "name": "Cygnal Anthropic Messages",
+            "description": {
+              "content": "Create Anthropic-compatible messages with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/anthropic-messages-v1)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cygnal",
+                "v1",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d12df326-0278-4e02-8839-deba163a5270",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"role\": \"string\",\n  \"content\": [\n    {\n      \"type\": \"string\",\n      \"text\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"model\": \"string\",\n  \"stop_reason\": \"tool_use\",\n  \"usage\": {\n    \"input_tokens\": 2424,\n    \"output_tokens\": 4063\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "daf4acc5-a203-4c76-b4e1-689fc06f63a8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ac9c822-ca94-43af-85c0-ea59e8d24547",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6ef3a1a-85db-4e0f-b4f7-69b9d207d442",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "572dbed0-65db-4d25-81c7-08ee36e7660a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d03e3e4f-0cb0-4031-88be-694227b11e93",
+          "name": "Cygnal Gemini Generate",
+          "request": {
+            "name": "Cygnal Gemini Generate",
+            "description": {
+              "content": "Create Gemini-compatible generateContent responses with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/gemini-generate-v1beta)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cygnal",
+                "v1beta",
+                "models",
+                "{{model}}:generateContent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "763e6e60-ba7f-4699-809e-45dbc74712ba",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:generateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"candidates\": [\n    {\n      \"content\": {\n        \"parts\": [\n          {\n            \"text\": \"string\"\n          },\n          {\n            \"text\": \"string\"\n          }\n        ],\n        \"role\": \"string\"\n      },\n      \"id\": \"string\",\n      \"finish_reason\": \"string\",\n      \"index\": 2536,\n      \"safety_ratings\": [\n        {\n          \"category\": \"string\",\n          \"probability\": \"string\",\n          \"blocked\": false\n        },\n        {\n          \"category\": \"string\",\n          \"probability\": \"string\",\n          \"blocked\": true,\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    {\n      \"content\": {\n        \"parts\": [\n          {\n            \"text\": \"string\"\n          },\n          {\n            \"text\": \"string\"\n          }\n        ],\n        \"role\": \"string\"\n      },\n      \"id\": \"string\",\n      \"finish_reason\": \"string\",\n      \"index\": 3207,\n      \"safety_ratings\": [\n        {\n          \"category\": \"string\",\n          \"probability\": \"string\",\n          \"blocked\": true,\n          \"key_0\": 1104.3606635505298,\n          \"key_1\": \"string\",\n          \"key_2\": 7151\n        },\n        {\n          \"category\": \"string\",\n          \"probability\": \"string\",\n          \"blocked\": true,\n          \"key_0\": 9624.103056115435\n        }\n      ]\n    }\n  ],\n  \"prompt_feedback\": {\n    \"safety_ratings\": [\n      {\n        \"category\": \"string\",\n        \"probability\": \"string\",\n        \"blocked\": true\n      },\n      {\n        \"category\": \"string\",\n        \"probability\": \"string\",\n        \"blocked\": true\n      }\n    ]\n  },\n  \"usage_metadata\": {\n    \"prompt_token_count\": 7360,\n    \"candidates_token_count\": 7514,\n    \"total_token_count\": 8057\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddeaaadf-d083-4564-afb7-4d90ad4f4960",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:generateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dd7f540-3562-4e1b-a9c5-c306f1385b73",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:generateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42b9354a-476e-4258-9f9a-13096a4cca50",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:generateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce3c3c15-36a8-4ede-b828-8cf135a068b5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:generateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25d20226-3018-4c97-8bd6-eb0c58af809d",
+          "name": "Cygnal Gemini Stream Generate Content",
+          "request": {
+            "name": "Cygnal Gemini Stream Generate Content",
+            "description": {
+              "content": "Create Gemini-compatible streaming responses with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/gemini-stream-generate-content-v1beta)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cygnal",
+                "v1beta",
+                "models",
+                "{{model}}:streamGenerateContent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47425212-2b18-42d7-b854-061bbd838e7c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:streamGenerateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"parts\": [\n          {\n            \"text\": \"string\"\n          },\n          {\n            \"text\": \"string\"\n          }\n        ],\n        \"role\": \"string\"\n      },\n      \"finishReason\": \"string\"\n    },\n    {\n      \"content\": {\n        \"parts\": [\n          {\n            \"text\": \"string\"\n          },\n          {\n            \"text\": \"string\"\n          }\n        ],\n        \"role\": \"string\"\n      },\n      \"finishReason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "688b3fff-0788-4c53-88b4-eced7af1e637",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:streamGenerateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6787d3ce-ce26-4364-88be-8bfa68118f71",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:streamGenerateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "805e17d5-9132-4378-bcda-e0f3541dc35c",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:streamGenerateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb3ad5db-e288-4e65-9639-20ab72eacaa4",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "v1beta",
+                    "models",
+                    "{{model}}:streamGenerateContent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57393ab5-bef3-4096-985a-c049084cebc8",
+          "name": "Cygnal Responses",
+          "request": {
+            "name": "Cygnal Responses",
+            "description": {
+              "content": "Process and monitor OpenAI-compatible response requests.\n\nThis endpoint processes completion requests with monitoring capabilities,\nsimilar to the chat completions endpoint.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-responses) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/responses)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cygnal",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"background\": false,\n  \"conversation\": \"<string>\",\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_tool_calls\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"model\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"previous_response\": \"<string>\",\n  \"prompt\": {\n    \"id\": \"<string>\",\n    \"variables\": {\n      \"key_0\": false,\n      \"key_1\": 6733.201342186491\n    },\n    \"version\": \"<string>\"\n  },\n  \"prompt_cache_key\": \"<string>\",\n  \"reasoning\": {\n    \"key_0\": \"string\"\n  },\n  \"safety_identifier\": \"<string>\",\n  \"service_tier\": \"<string>\",\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"text\": {},\n  \"tool_choice\": \"<string>\",\n  \"top_logprobs\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"truncation\": \"<string>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ace9a50e-067e-4d8e-b945-1e13d0346e14",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"background\": false,\n  \"conversation\": \"<string>\",\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_tool_calls\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7658\n  },\n  \"model\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"previous_response\": \"<string>\",\n  \"prompt\": {\n    \"id\": \"string\",\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": 4307.72959100129,\n      \"key_2\": 8583.615231940528,\n      \"key_3\": 2399\n    },\n    \"version\": \"string\"\n  },\n  \"prompt_cache_key\": \"<string>\",\n  \"reasoning\": {\n    \"key_0\": \"string\"\n  },\n  \"safety_identifier\": \"<string>\",\n  \"service_tier\": \"<string>\",\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"text\": {},\n  \"tool_choice\": \"<string>\",\n  \"top_logprobs\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"truncation\": \"<string>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"object\": \"string\",\n  \"model\": \"string\",\n  \"output\": [\n    \"string\",\n    \"string\"\n  ],\n  \"choices\": [\n    {\n      \"index\": 200,\n      \"finish_reason\": \"string\",\n      \"message\": {\n        \"role\": \"string\",\n        \"content\": \"string\",\n        \"key_0\": true\n      }\n    },\n    {\n      \"index\": 6376,\n      \"finish_reason\": \"string\",\n      \"message\": {\n        \"role\": \"string\",\n        \"content\": \"string\",\n        \"key_0\": 9523,\n        \"key_1\": 4177.900240147908\n      },\n      \"key_0\": \"string\",\n      \"key_1\": 1308.2422124444993,\n      \"key_2\": false,\n      \"key_3\": false\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 6048,\n    \"completion_tokens\": 5685,\n    \"total_tokens\": 8580,\n    \"input_tokens\": 8142,\n    \"output_tokens\": 5436\n  },\n  \"error\": {\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"code\": \"string\",\n    \"param\": \"string\"\n  },\n  \"key_0\": \"string\",\n  \"key_1\": true,\n  \"key_2\": 8600\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48a15184-c705-498f-8045-2a4833aa77de",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"background\": false,\n  \"conversation\": \"<string>\",\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_tool_calls\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7658\n  },\n  \"model\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"previous_response\": \"<string>\",\n  \"prompt\": {\n    \"id\": \"string\",\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": 4307.72959100129,\n      \"key_2\": 8583.615231940528,\n      \"key_3\": 2399\n    },\n    \"version\": \"string\"\n  },\n  \"prompt_cache_key\": \"<string>\",\n  \"reasoning\": {\n    \"key_0\": \"string\"\n  },\n  \"safety_identifier\": \"<string>\",\n  \"service_tier\": \"<string>\",\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"text\": {},\n  \"tool_choice\": \"<string>\",\n  \"top_logprobs\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"truncation\": \"<string>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2705bc3c-81d7-4e68-a2dc-b1f7e3ab43d3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"background\": false,\n  \"conversation\": \"<string>\",\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_tool_calls\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7658\n  },\n  \"model\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"previous_response\": \"<string>\",\n  \"prompt\": {\n    \"id\": \"string\",\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": 4307.72959100129,\n      \"key_2\": 8583.615231940528,\n      \"key_3\": 2399\n    },\n    \"version\": \"string\"\n  },\n  \"prompt_cache_key\": \"<string>\",\n  \"reasoning\": {\n    \"key_0\": \"string\"\n  },\n  \"safety_identifier\": \"<string>\",\n  \"service_tier\": \"<string>\",\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"text\": {},\n  \"tool_choice\": \"<string>\",\n  \"top_logprobs\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"truncation\": \"<string>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cccf721-33ed-4d68-8bc6-e190d1a8a1d0",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"background\": false,\n  \"conversation\": \"<string>\",\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_tool_calls\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7658\n  },\n  \"model\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"previous_response\": \"<string>\",\n  \"prompt\": {\n    \"id\": \"string\",\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": 4307.72959100129,\n      \"key_2\": 8583.615231940528,\n      \"key_3\": 2399\n    },\n    \"version\": \"string\"\n  },\n  \"prompt_cache_key\": \"<string>\",\n  \"reasoning\": {\n    \"key_0\": \"string\"\n  },\n  \"safety_identifier\": \"<string>\",\n  \"service_tier\": \"<string>\",\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"text\": {},\n  \"tool_choice\": \"<string>\",\n  \"top_logprobs\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"truncation\": \"<string>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "818e5632-c239-4637-ac19-f4f89c0df09f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"background\": false,\n  \"conversation\": \"<string>\",\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_tool_calls\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7658\n  },\n  \"model\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"previous_response\": \"<string>\",\n  \"prompt\": {\n    \"id\": \"string\",\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": 4307.72959100129,\n      \"key_2\": 8583.615231940528,\n      \"key_3\": 2399\n    },\n    \"version\": \"string\"\n  },\n  \"prompt_cache_key\": \"<string>\",\n  \"reasoning\": {\n    \"key_0\": \"string\"\n  },\n  \"safety_identifier\": \"<string>\",\n  \"service_tier\": \"<string>\",\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"text\": {},\n  \"tool_choice\": \"<string>\",\n  \"top_logprobs\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"truncation\": \"<string>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a2741d9-798b-434d-aa21-76033a00bd21",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cygnal",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"background\": false,\n  \"conversation\": \"<string>\",\n  \"input\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"max_output_tokens\": \"<integer>\",\n  \"max_tool_calls\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7658\n  },\n  \"model\": \"<string>\",\n  \"parallel_tool_calls\": \"<boolean>\",\n  \"previous_response\": \"<string>\",\n  \"prompt\": {\n    \"id\": \"string\",\n    \"variables\": {\n      \"key_0\": \"string\",\n      \"key_1\": 4307.72959100129,\n      \"key_2\": 8583.615231940528,\n      \"key_3\": 2399\n    },\n    \"version\": \"string\"\n  },\n  \"prompt_cache_key\": \"<string>\",\n  \"reasoning\": {\n    \"key_0\": \"string\"\n  },\n  \"safety_identifier\": \"<string>\",\n  \"service_tier\": \"<string>\",\n  \"store\": \"<boolean>\",\n  \"stream\": \"<boolean>\",\n  \"stream_options\": {},\n  \"temperature\": \"<number>\",\n  \"text\": {},\n  \"tool_choice\": \"<string>\",\n  \"top_logprobs\": \"<integer>\",\n  \"top_p\": \"<number>\",\n  \"truncation\": \"<string>\",\n  \"user\": \"<string>\",\n  \"monitor_details\": \"<boolean>\",\n  \"policy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"detail\": \"string\",\n  \"error\": true,\n  \"error_code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.grayswan.ai",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "model"
+    }
+  ],
+  "info": {
+    "_postman_id": "4841f093-9e09-41c8-9193-24bcbf89b30a",
+    "name": "Gray Swan AI Activity Cygnal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for Gray Swan AI",
+      "type": "text/plain"
+    }
+  }
+}

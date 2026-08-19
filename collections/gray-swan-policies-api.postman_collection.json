@@ -1,0 +1,1496 @@
+{
+  "item": [
+    {
+      "id": "3205c54e-5391-4157-93f0-cf89596332a7",
+      "name": "Policies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9e1bf19-5afd-454d-9a34-8d19bfacf768",
+          "name": "Get Policies",
+          "request": {
+            "name": "Get Policies",
+            "description": {
+              "content": "Get policies for an organization with pagination.\n\nBy default, returns all policies (no limit). Use limit parameter for pagination.\nResponse includes pagination metadata (total, has_more) to detect truncation.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/get-policies)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of policies to return (omit to return all)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of policies to skip"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e36628c3-bc7c-47a7-a24a-c6d24571e28e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policies\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"rules\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"description\": \"string\",\n      \"rule_modes\": {\n        \"key_0\": \"disabled\",\n        \"key_1\": \"block\"\n      },\n      \"mode\": \"string\",\n      \"pre_violation_threshold\": 8079.912309322615,\n      \"pre_jb_threshold\": 2991.9225421840756,\n      \"post_violation_threshold\": 8771.611264727106,\n      \"post_violation_jb_threshold\": 4387.492696503482,\n      \"scanners_config\": {\n        \"key_0\": 1681.4474579048278\n      },\n      \"block_message\": \"string\",\n      \"is_preset\": false,\n      \"created_at\": \"1959-10-19T02:47:06.084Z\",\n      \"updated_at\": \"1973-08-10T00:09:19.371Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"rules\": {\n        \"key_0\": \"string\"\n      },\n      \"description\": \"string\",\n      \"rule_modes\": {\n        \"key_0\": \"disabled\",\n        \"key_1\": \"disabled\"\n      },\n      \"mode\": \"string\",\n      \"pre_violation_threshold\": 7806.672226277298,\n      \"pre_jb_threshold\": 9310.009526466078,\n      \"post_violation_threshold\": 4318.812035659552,\n      \"post_violation_jb_threshold\": 5977.8921266181615,\n      \"scanners_config\": {\n        \"key_0\": false\n      },\n      \"block_message\": \"string\",\n      \"is_preset\": false,\n      \"created_at\": \"2013-03-08T17:48:43.842Z\",\n      \"updated_at\": \"2002-12-17T15:28:44.609Z\"\n    }\n  ],\n  \"total\": 3005,\n  \"limit\": 7988,\n  \"offset\": 0,\n  \"has_more\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4096518f-cb71-4a13-820f-45d617571b25",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afc0f02c-477f-485d-af07-24f519d89325",
+          "name": "Create Policy",
+          "request": {
+            "name": "Create Policy",
+            "description": {
+              "content": "Create a new policy.\n\nThe policy will be created under the organization associated with the API key.\nRequires admin role.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/create-policy)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categories\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"rule_modes\": {\n    \"key_0\": \"<string>\"\n  },\n  \"mode\": \"<string>\",\n  \"pre_violation_threshold\": \"<number>\",\n  \"pre_jb_threshold\": \"<number>\",\n  \"post_violation_threshold\": \"<number>\",\n  \"post_violation_jb_threshold\": \"<number>\",\n  \"scanners_config\": {\n    \"key_0\": {\n      \"pii_types\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"block_message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d16575b7-4c1a-4d63-9806-aedf6202bc84",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categories\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"rule_modes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"mode\": \"<string>\",\n  \"pre_violation_threshold\": \"<number>\",\n  \"pre_jb_threshold\": \"<number>\",\n  \"post_violation_threshold\": \"<number>\",\n  \"post_violation_jb_threshold\": \"<number>\",\n  \"scanners_config\": {\n    \"key_0\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"block_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"rules\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"description\": \"string\",\n  \"rule_modes\": {\n    \"key_0\": \"disabled\",\n    \"key_1\": \"observe\",\n    \"key_2\": \"observe\"\n  },\n  \"mode\": \"string\",\n  \"pre_violation_threshold\": 3896.0021279765633,\n  \"pre_jb_threshold\": 3598.379376655224,\n  \"post_violation_threshold\": 513.1408167968765,\n  \"post_violation_jb_threshold\": 9788.292987329374,\n  \"scanners_config\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"block_message\": \"string\",\n  \"is_preset\": false,\n  \"created_at\": \"1988-02-17T23:17:31.668Z\",\n  \"updated_at\": \"1975-01-16T03:11:36.165Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6eda06a9-e85d-427f-a874-f78854a736c0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categories\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"rule_modes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"mode\": \"<string>\",\n  \"pre_violation_threshold\": \"<number>\",\n  \"pre_jb_threshold\": \"<number>\",\n  \"post_violation_threshold\": \"<number>\",\n  \"post_violation_jb_threshold\": \"<number>\",\n  \"scanners_config\": {\n    \"key_0\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"block_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b66e347-96e3-49f7-9934-7538660c1e96",
+          "name": "Export Policies",
+          "request": {
+            "name": "Export Policies",
+            "description": {
+              "content": "Export all policies for an organization as JSON.\n\nReturns policies in a format suitable for import.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/export-policies)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5548dae-c7de-4b7f-8b39-ac7fa255156c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policies\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"categories\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"rule_modes\": {\n        \"key_0\": \"observe\",\n        \"key_1\": \"disabled\",\n        \"key_2\": \"block\"\n      },\n      \"mode\": \"string\",\n      \"pre_violation_threshold\": 2891.4502026994605,\n      \"pre_jb_threshold\": 6871.652618207217,\n      \"post_violation_threshold\": 6043.630175216314,\n      \"post_violation_jb_threshold\": 6462.371947950913,\n      \"scanners_config\": {\n        \"key_0\": 6631.623765567327,\n        \"key_1\": false\n      },\n      \"block_message\": \"string\",\n      \"export_version\": \"1.0\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"categories\": {\n        \"key_0\": \"string\"\n      },\n      \"rule_modes\": {\n        \"key_0\": \"observe\",\n        \"key_1\": \"block\",\n        \"key_2\": \"block\"\n      },\n      \"mode\": \"string\",\n      \"pre_violation_threshold\": 4638.450355625503,\n      \"pre_jb_threshold\": 3726.857546944835,\n      \"post_violation_threshold\": 7094.986306051265,\n      \"post_violation_jb_threshold\": 9627.40258374681,\n      \"scanners_config\": {\n        \"key_0\": 4031.0116256321403\n      },\n      \"block_message\": \"string\",\n      \"export_version\": \"1.0\"\n    }\n  ],\n  \"export_date\": \"1989-11-16T08:18:03.842Z\",\n  \"total\": 7764,\n  \"export_version\": \"1.0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d544458-7056-4e7f-ad07-8b9e453d1065",
+          "name": "Get Policy By Id",
+          "request": {
+            "name": "Get Policy By Id",
+            "description": {
+              "content": "Get a policy by ID.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/get-policy-by-id)\n\nRaises:\n    ResourceNotFoundError: If the policy does not exist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "255362ba-aa01-4ff6-94ec-548eb7a77e13",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"rules\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"description\": \"string\",\n  \"rule_modes\": {\n    \"key_0\": \"disabled\",\n    \"key_1\": \"observe\",\n    \"key_2\": \"observe\"\n  },\n  \"mode\": \"string\",\n  \"pre_violation_threshold\": 3896.0021279765633,\n  \"pre_jb_threshold\": 3598.379376655224,\n  \"post_violation_threshold\": 513.1408167968765,\n  \"post_violation_jb_threshold\": 9788.292987329374,\n  \"scanners_config\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"block_message\": \"string\",\n  \"is_preset\": false,\n  \"created_at\": \"1988-02-17T23:17:31.668Z\",\n  \"updated_at\": \"1975-01-16T03:11:36.165Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3b66b35-0b70-4d7b-82b0-b8e46402e23c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9870d3da-3366-46af-9e6b-e50debef5671",
+          "name": "Update Policy",
+          "request": {
+            "name": "Update Policy",
+            "description": {
+              "content": "Update an existing policy.\n\nOnly provided fields will be updated. Omit fields to leave them unchanged.\nPreset policies cannot be modified.\nRequires admin role.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/update-policy)\n\nRaises:\n    ResourceNotFoundError: If the policy does not exist.\n    PresetPolicyModificationError: If attempting to modify a preset policy.\n    AdminRequiredError: If user is not an admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categories\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"rule_modes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"mode\": \"<string>\",\n  \"pre_violation_threshold\": \"<number>\",\n  \"pre_jb_threshold\": \"<number>\",\n  \"post_violation_threshold\": \"<number>\",\n  \"post_violation_jb_threshold\": \"<number>\",\n  \"scanners_config\": {\n    \"key_0\": {\n      \"pii_types\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"block_message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e9727d74-0312-42e8-b5e9-1db53283e0d5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categories\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"rule_modes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"mode\": \"<string>\",\n  \"pre_violation_threshold\": \"<number>\",\n  \"pre_jb_threshold\": \"<number>\",\n  \"post_violation_threshold\": \"<number>\",\n  \"post_violation_jb_threshold\": \"<number>\",\n  \"scanners_config\": {\n    \"key_0\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_2\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_3\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"block_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"rules\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"description\": \"string\",\n  \"rule_modes\": {\n    \"key_0\": \"disabled\",\n    \"key_1\": \"observe\",\n    \"key_2\": \"observe\"\n  },\n  \"mode\": \"string\",\n  \"pre_violation_threshold\": 3896.0021279765633,\n  \"pre_jb_threshold\": 3598.379376655224,\n  \"post_violation_threshold\": 513.1408167968765,\n  \"post_violation_jb_threshold\": 9788.292987329374,\n  \"scanners_config\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"block_message\": \"string\",\n  \"is_preset\": false,\n  \"created_at\": \"1988-02-17T23:17:31.668Z\",\n  \"updated_at\": \"1975-01-16T03:11:36.165Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aba676eb-e976-4ff8-96ce-46b258c6551d",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categories\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"rule_modes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"mode\": \"<string>\",\n  \"pre_violation_threshold\": \"<number>\",\n  \"pre_jb_threshold\": \"<number>\",\n  \"post_violation_threshold\": \"<number>\",\n  \"post_violation_jb_threshold\": \"<number>\",\n  \"scanners_config\": {\n    \"key_0\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_2\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_3\": {\n      \"pii_types\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"block_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fd71a39-fde6-4baa-a986-8e113fdac636",
+          "name": "Delete Policy",
+          "request": {
+            "name": "Delete Policy",
+            "description": {
+              "content": "Delete a policy.\n\nPreset policies cannot be deleted.\nRequires admin role.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/delete-policy)\n\nRaises:\n    ResourceNotFoundError: If the policy does not exist.\n    PresetPolicyModificationError: If attempting to delete a preset policy.\n    AdminRequiredError: If user is not an admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39e230d8-bd0e-4e56-abdf-f12553cf2228",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0db69c6f-35a1-46a4-8f31-06f51a256b18",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42bb9951-e4c2-4658-896c-e482b2a53530",
+          "name": "Export Policy By Id",
+          "request": {
+            "name": "Export Policy By Id",
+            "description": {
+              "content": "Export a single policy as JSON.\n\nReturns the policy in a format suitable for import.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/export-policy-by-id)\n\nRaises:\n    ResourceNotFoundError: If the policy does not exist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccf920f5-83c6-4f50-b8f6-c6342ff56c2f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"categories\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"rule_modes\": {\n    \"key_0\": \"block\",\n    \"key_1\": \"block\"\n  },\n  \"mode\": \"string\",\n  \"pre_violation_threshold\": 5156.135571284441,\n  \"pre_jb_threshold\": 303.8145101469192,\n  \"post_violation_threshold\": 7787.046705615969,\n  \"post_violation_jb_threshold\": 611.3577351878885,\n  \"scanners_config\": {\n    \"key_0\": 2012.8361604509093,\n    \"key_1\": \"string\"\n  },\n  \"block_message\": \"string\",\n  \"export_version\": \"1.0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d913607-3445-4bb1-b001-1c1e8c95ddcd",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e88df08d-beae-4a31-b13c-f91c8c3a589a",
+          "name": "Get Policy Versions",
+          "request": {
+            "name": "Get Policy Versions",
+            "description": {
+              "content": "Get version history for a policy.\n\nReturns a list of all versions (metadata only) ordered by timestamp descending.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/get-policy-versions)\n\nRaises:\n    ResourceNotFoundError: If the policy does not exist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac6dd821-17ae-44bb-a1ed-df06166e6aed",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_id\": \"string\",\n  \"versions\": [\n    {\n      \"id\": \"string\",\n      \"operation\": \"string\",\n      \"timestamp\": \"1983-11-01T06:12:50.421Z\",\n      \"user_id\": \"string\",\n      \"diff\": [\n        {\n          \"key_0\": 6770,\n          \"key_1\": 4320.280216809034\n        },\n        {\n          \"key_0\": true,\n          \"key_1\": 2368.1040864791557,\n          \"key_2\": 7606.355171597321\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"operation\": \"string\",\n      \"timestamp\": \"2020-06-19T11:42:18.588Z\",\n      \"user_id\": \"string\",\n      \"diff\": [\n        {\n          \"key_0\": 8197.739329992477,\n          \"key_1\": 3008.2335391051806\n        },\n        {\n          \"key_0\": false,\n          \"key_1\": 1582,\n          \"key_2\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total\": 870\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0971ae07-972d-46fc-8dd8-1d24e0305136",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27129b51-f357-4cda-a764-8acdc7c902a8",
+          "name": "Get Policy At Version",
+          "request": {
+            "name": "Get Policy At Version",
+            "description": {
+              "content": "Get the reconstructed policy state at a specific version.\n\nThe policy state is reconstructed by applying version diffs in reverse.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/get-policy-at-version)\n\nRaises:\n    ResourceNotFoundError: If the policy or version does not exist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "versions",
+                ":version_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b880021-6905-47ce-b0d6-f3e2a24bcf35",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "versions",
+                    ":version_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"policy_id\": \"string\",\n  \"operation\": \"string\",\n  \"policy_state\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"rules\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"description\": \"string\",\n    \"rule_modes\": {\n      \"key_0\": \"block\",\n      \"key_1\": \"block\"\n    },\n    \"mode\": \"string\",\n    \"pre_violation_threshold\": 3570.546294641369,\n    \"pre_jb_threshold\": 4316.355650735758,\n    \"post_violation_threshold\": 1963.7374266923434,\n    \"post_violation_jb_threshold\": 2796.526587141137,\n    \"scanners_config\": {\n      \"key_0\": \"string\"\n    },\n    \"block_message\": \"string\",\n    \"is_preset\": false,\n    \"created_at\": \"2006-07-26T20:21:14.314Z\",\n    \"updated_at\": \"2013-07-26T10:45:09.736Z\"\n  },\n  \"timestamp\": \"2008-07-15T08:30:24.593Z\",\n  \"user_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e4e5a7b-6201-4c83-bce4-5d78feeac7d3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "versions",
+                    ":version_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50d95dc8-e7ce-4b34-8d2a-d3bb9a0fa52d",
+          "name": "Import Policy",
+          "request": {
+            "name": "Import Policy",
+            "description": {
+              "content": "Import a single policy from JSON.\n\nIDs from the import are ignored; a new ID will be generated.\nRequires admin role.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/import-policy)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categories\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"rule_modes\": {\n      \"key_0\": \"<string>\"\n    },\n    \"mode\": \"<string>\",\n    \"pre_violation_threshold\": \"<number>\",\n    \"pre_jb_threshold\": \"<number>\",\n    \"post_violation_threshold\": \"<number>\",\n    \"post_violation_jb_threshold\": \"<number>\",\n    \"scanners_config\": {\n      \"key_0\": false\n    },\n    \"block_message\": \"<string>\",\n    \"export_version\": \"1.0\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46b57db0-3fdb-467d-bfb3-6fd883e0d25e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"categories\": {\n      \"key_0\": \"string\"\n    },\n    \"rule_modes\": {\n      \"key_0\": \"observe\"\n    },\n    \"mode\": \"string\",\n    \"pre_violation_threshold\": 1935.7874647056017,\n    \"pre_jb_threshold\": 73.11891004952109,\n    \"post_violation_threshold\": 6071.534364951715,\n    \"post_violation_jb_threshold\": 8830.631928054692,\n    \"scanners_config\": {\n      \"key_0\": 3892\n    },\n    \"block_message\": \"string\",\n    \"export_version\": \"1.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"rules\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"description\": \"string\",\n  \"rule_modes\": {\n    \"key_0\": \"disabled\",\n    \"key_1\": \"observe\",\n    \"key_2\": \"observe\"\n  },\n  \"mode\": \"string\",\n  \"pre_violation_threshold\": 3896.0021279765633,\n  \"pre_jb_threshold\": 3598.379376655224,\n  \"post_violation_threshold\": 513.1408167968765,\n  \"post_violation_jb_threshold\": 9788.292987329374,\n  \"scanners_config\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"block_message\": \"string\",\n  \"is_preset\": false,\n  \"created_at\": \"1988-02-17T23:17:31.668Z\",\n  \"updated_at\": \"1975-01-16T03:11:36.165Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "466cfe5b-f808-4563-be76-ed4f574f3c8e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"categories\": {\n      \"key_0\": \"string\"\n    },\n    \"rule_modes\": {\n      \"key_0\": \"observe\"\n    },\n    \"mode\": \"string\",\n    \"pre_violation_threshold\": 1935.7874647056017,\n    \"pre_jb_threshold\": 73.11891004952109,\n    \"post_violation_threshold\": 6071.534364951715,\n    \"post_violation_jb_threshold\": 8830.631928054692,\n    \"scanners_config\": {\n      \"key_0\": 3892\n    },\n    \"block_message\": \"string\",\n    \"export_version\": \"1.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfe5b4ce-2919-4e5b-8e82-dd8fc6bab71b",
+          "name": "Bulk Import Policies",
+          "request": {
+            "name": "Bulk Import Policies",
+            "description": {
+              "content": "Bulk import multiple policies from JSON.\n\nIDs from the import are ignored; new IDs will be generated for each policy.\nReturns a summary of successful and failed imports.\nRequires admin role.\n\nDocs: [Guide](https://docs.grayswan.ai/policy-management/policies) |\n[API Reference](https://docs.grayswan.ai/api-reference/policies/bulk-import-policies)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                "bulk-import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policies\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"categories\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"rule_modes\": {\n        \"key_0\": \"<string>\"\n      },\n      \"mode\": \"<string>\",\n      \"pre_violation_threshold\": \"<number>\",\n      \"pre_jb_threshold\": \"<number>\",\n      \"post_violation_threshold\": \"<number>\",\n      \"post_violation_jb_threshold\": \"<number>\",\n      \"scanners_config\": {\n        \"key_0\": \"string\"\n      },\n      \"block_message\": \"<string>\",\n      \"export_version\": \"1.0\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cda8193c-6724-4b3c-ad88-5f1a00448c8f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policies\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"categories\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"rule_modes\": {\n        \"key_0\": \"disabled\"\n      },\n      \"mode\": \"string\",\n      \"pre_violation_threshold\": 9172.185205791075,\n      \"pre_jb_threshold\": 576.0048957426211,\n      \"post_violation_threshold\": 182.30103921542894,\n      \"post_violation_jb_threshold\": 8412.932637166059,\n      \"scanners_config\": {\n        \"key_0\": false,\n        \"key_1\": 2812.116969732722,\n        \"key_2\": 3741.049827900098\n      },\n      \"block_message\": \"string\",\n      \"export_version\": \"1.0\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 271,\n  \"successful\": 131,\n  \"failed\": 7541,\n  \"results\": [\n    {\n      \"name\": \"string\",\n      \"success\": false,\n      \"id\": \"string\",\n      \"error\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"success\": true,\n      \"id\": \"string\",\n      \"error\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21655103-a167-48cf-8629-3151a2a544ce",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policies\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"categories\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"rule_modes\": {\n        \"key_0\": \"disabled\"\n      },\n      \"mode\": \"string\",\n      \"pre_violation_threshold\": 9172.185205791075,\n      \"pre_jb_threshold\": 576.0048957426211,\n      \"post_violation_threshold\": 182.30103921542894,\n      \"post_violation_jb_threshold\": 8412.932637166059,\n      \"scanners_config\": {\n        \"key_0\": false,\n        \"key_1\": 2812.116969732722,\n        \"key_2\": 3741.049827900098\n      },\n      \"block_message\": \"string\",\n      \"export_version\": \"1.0\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.grayswan.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "760714e4-fa91-4306-abe8-d6f6b34789c8",
+    "name": "Gray Swan AI Activity Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for Gray Swan AI",
+      "type": "text/plain"
+    }
+  }
+}

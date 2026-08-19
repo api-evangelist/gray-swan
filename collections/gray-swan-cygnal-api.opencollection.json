@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gray Swan AI Activity Cygnal API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cygnal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cygnal Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.grayswan.ai/cygnal/monitor",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Monitors content for policy violations.\n\nThis endpoint is used to check if the provided text contains harmful\ncontent or violates a given set of policies.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/monitor-requests) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/monitor)"
+        },
+        {
+          "info": {
+            "name": "Cygnal Completions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.grayswan.ai/cygnal/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create OpenAI-compatible chat completions with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/completions)"
+        },
+        {
+          "info": {
+            "name": "Cygnal Completions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.grayswan.ai/cygnal/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create OpenAI-compatible chat completions with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/completions)"
+        },
+        {
+          "info": {
+            "name": "Cygnal Anthropic Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.grayswan.ai/cygnal/v1/messages"
+          },
+          "docs": "Create Anthropic-compatible messages with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/anthropic-messages-v1)"
+        },
+        {
+          "info": {
+            "name": "Cygnal Gemini Generate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.grayswan.ai/cygnal/v1beta/models/:model:generateContent",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Gemini-compatible generateContent responses with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/gemini-generate-v1beta)"
+        },
+        {
+          "info": {
+            "name": "Cygnal Gemini Stream Generate Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.grayswan.ai/cygnal/v1beta/models/:model:streamGenerateContent",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Gemini-compatible streaming responses with Cygnal protection.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-completions) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/gemini-stream-generate-content-v1beta)"
+        },
+        {
+          "info": {
+            "name": "Cygnal Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.grayswan.ai/cygnal/responses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Process and monitor OpenAI-compatible response requests.\n\nThis endpoint processes completion requests with monitoring capabilities,\nsimilar to the chat completions endpoint.\n\nDocs: [Guide](https://docs.grayswan.ai/cygnal/creating-responses) |\n[API Reference](https://docs.grayswan.ai/api-reference/cygnal/responses)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gray Swan AI Activity API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Activity Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.grayswan.ai/activity/export",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (ObjectId from previous response)"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "ISO 8601 timestamp to filter events after this time"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "ISO 8601 timestamp to filter events before this time"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of activity records to return"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search is temporarily unavailable and ignored; use cursor, time range, or alarm filters instead."
+              },
+              {
+                "name": "alarm_only",
+                "value": "",
+                "type": "query",
+                "description": "Only return events where alarm=True"
+              }
+            ]
+          },
+          "docs": "Export Cygnal activity data for the authenticated organization.\n\nRequires admin role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
