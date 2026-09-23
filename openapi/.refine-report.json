@@ -1,9 +1,7 @@
 {
   "provider": "gray-swan",
   "sources": [
-    "gray-swan-activity-api-openapi.yml",
-    "gray-swan-cygnal-api-openapi.yml",
-    "gray-swan-policies-api-openapi.yml"
+    "_original/gray-swan-cygnal-openapi.json"
   ],
   "outputs": [
     "gray-swan-activity-api-openapi.yml",
@@ -13,6 +11,36 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "gray-swan-cygnal-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "gray-swan-cygnal-openapi.json: tagged paths GET /activity/export -> Activity",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /cygnal/monitor -> Cygnal",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /cygnal/chat/completions -> Cygnal",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /cygnal/v1/chat/completions -> Cygnal",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /cygnal/v1/messages -> Cygnal",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /cygnal/v1beta/models/{model}:generateContent -> Cygnal",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /cygnal/v1beta/models/{model}:streamGenerateContent -> Cygnal",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /cygnal/responses -> Cygnal",
+    "gray-swan-cygnal-openapi.json: tagged paths GET /policies -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /policies -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths GET /policies/export -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths GET /policies/{policy_id} -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths PUT /policies/{policy_id} -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths DELETE /policies/{policy_id} -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths GET /policies/{policy_id}/export -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths GET /policies/{policy_id}/versions -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths GET /policies/{policy_id}/versions/{version_id} -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /policies/import -> Policies",
+    "gray-swan-cygnal-openapi.json: tagged paths POST /policies/bulk-import -> Policies",
+    "gray-swan-cygnal-openapi.json: declared missing tag: Activity",
+    "gray-swan-cygnal-openapi.json: declared missing tag: Cygnal",
+    "gray-swan-cygnal-openapi.json: declared missing tag: Policies",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "gray-swan-activity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gray-swan-cygnal-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gray-swan-policies-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

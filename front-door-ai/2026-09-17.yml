@@ -1,0 +1,31 @@
+# Front Door AI Index — gray-swan — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: gray-swan
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.grayswan.ai
+  final_host: www.grayswan.ai
+  ownership: own
+  owner: gray-swan
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 47
+  host_score: 47
+  density: 49.95
+  words: 941
+  tiers:
+    agentic: 2
+    core: 44
+    model: 1
+  ambiguous: 12
+  top_terms:
+    AI: 40
+    agent: 12
+    LLMs: 3
+    AI agent: 1
+    Claude: 1
+    ML: 1
+    agentic: 1
