@@ -118,22 +118,6 @@ paths:
       - Activity
 components:
   schemas:
-    JSONPrimitive:
-      anyOf:
-      - type: string
-      - type: integer
-      - type: number
-      - type: boolean
-      - type: 'null'
-    JSONValue-Output:
-      anyOf:
-      - $ref: '#/components/schemas/JSONPrimitive'
-      - items:
-          $ref: '#/components/schemas/JSONValue-Output'
-        type: array
-      - additionalProperties:
-          $ref: '#/components/schemas/JSONValue-Output'
-        type: object
     StandardErrorResponse:
       properties:
         error:
@@ -163,6 +147,32 @@ components:
       - message
       - detail
       title: StandardErrorResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ActivityExportResponse:
       properties:
         activities:
@@ -195,29 +205,19 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+    JSONPrimitive:
+      anyOf:
+      - type: string
+      - type: integer
+      - type: number
+      - type: boolean
+      - type: 'null'
+    JSONValue-Output:
+      anyOf:
+      - $ref: '#/components/schemas/JSONPrimitive'
+      - items:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: array
+      - additionalProperties:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: object

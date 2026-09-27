@@ -500,6 +500,26 @@ paths:
       - Cygnal
 components:
   schemas:
+    GeminiStreamChunkResponse:
+      properties:
+        candidates:
+          items:
+            $ref: '#/components/schemas/GeminiStreamCandidate'
+          type: array
+          title: Candidates
+      type: object
+      required:
+      - candidates
+      title: GeminiStreamChunkResponse
+    ToolChoiceName:
+      properties:
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - name
+      title: ToolChoiceName
     StandardErrorResponse:
       properties:
         error:
@@ -529,6 +549,220 @@ components:
       - message
       - detail
       title: StandardErrorResponse
+    PromptTokensDetails:
+      properties:
+        audio_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Audio Tokens
+        cached_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Cached Tokens
+      additionalProperties: true
+      type: object
+      title: PromptTokensDetails
+      description: Breakdown of tokens used in the prompt.
+    MonitoringResponse:
+      properties:
+        violation:
+          type: number
+          title: Violation
+          default: 0.0
+        observe_violation:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Observe Violation
+        violated_rules:
+          items:
+            type: integer
+          type: array
+          title: Violated Rules
+          default: []
+        violated_rule_descriptions:
+          items:
+            $ref: '#/components/schemas/RuleDescription'
+          type: array
+          title: Violated Rule Descriptions
+          default: []
+        ignored_inputs:
+          items:
+            $ref: '#/components/schemas/IgnoredInput'
+          type: array
+          title: Ignored Inputs
+          default: []
+        ipi:
+          type: boolean
+          title: Ipi
+          default: false
+        mutation:
+          type: boolean
+          title: Mutation
+          default: false
+        scanner_output:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Scanner Output
+        reasoning:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Reasoning
+        input_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Input Tokens
+        output_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Output Tokens
+        activity_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Activity Id
+        block_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Block Message
+        error:
+          type: boolean
+          title: Error
+          default: false
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+      type: object
+      title: MonitoringResponse
+      description: 'Response schema for monitoring/moderation results.
+
+
+        Also used as the structure for pre_analysis and post_generation_analysis
+
+        dicts in activity logging.'
+    ResponseError:
+      properties:
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Message
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Code
+        param:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Param
+      additionalProperties: true
+      type: object
+      title: ResponseError
+    CompletionTokensDetails:
+      properties:
+        accepted_prediction_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Accepted Prediction Tokens
+        audio_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Audio Tokens
+        reasoning_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Reasoning Tokens
+        rejected_prediction_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rejected Prediction Tokens
+      additionalProperties: true
+      type: object
+      title: CompletionTokensDetails
+      description: Breakdown of tokens used in a completion.
+    ToolChoice:
+      properties:
+        type:
+          type: string
+          title: Type
+        function:
+          $ref: '#/components/schemas/ToolChoiceName'
+      type: object
+      required:
+      - type
+      - function
+      title: ToolChoice
+    Prompt:
+      properties:
+        id:
+          type: string
+          title: Id
+        variables:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Variables
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Version
+      type: object
+      required:
+      - id
+      title: Prompt
+    ContentBlock-Output:
+      properties:
+        type:
+          type: string
+          const: text
+          title: Type
+        text:
+          type: string
+          title: Text
+      type: object
+      required:
+      - type
+      - text
+      title: ContentBlock
+      description: Base content block for Anthropic responses
+    ResponseMessage:
+      properties:
+        role:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Role
+        content:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content
+      additionalProperties: true
+      type: object
+      title: ResponseMessage
     CreateMonitorRequest:
       properties:
         text:
@@ -631,39 +865,6 @@ components:
           title: Litellm Metadata
       type: object
       title: CreateMonitorRequest
-    PIIScannerConfig:
-      properties:
-        pii_types:
-          items:
-            type: string
-          type: array
-          title: Pii Types
-      type: object
-      title: PIIScannerConfig
-      description: Configuration for the PII scanner.
-    ToolChoiceName:
-      properties:
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - name
-      title: ToolChoiceName
-    AnthropicUsage:
-      properties:
-        input_tokens:
-          type: integer
-          title: Input Tokens
-        output_tokens:
-          type: integer
-          title: Output Tokens
-      type: object
-      required:
-      - input_tokens
-      - output_tokens
-      title: AnthropicUsage
-      description: Usage information for Anthropic API
     ResponsesEndpointResponse:
       properties:
         id:
@@ -706,6 +907,22 @@ components:
       additionalProperties: true
       type: object
       title: ResponsesEndpointResponse
+    GeminiContent:
+      properties:
+        parts:
+          items:
+            $ref: '#/components/schemas/GeminiPart'
+          type: array
+          title: Parts
+        role:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Role
+      type: object
+      required:
+      - parts
+      title: GeminiContent
     ResponseChoice:
       properties:
         index:
@@ -725,309 +942,15 @@ components:
       additionalProperties: true
       type: object
       title: ResponseChoice
-    JSONPrimitive:
+    JSONValue-Input:
       anyOf:
-      - type: string
-      - type: integer
-      - type: number
-      - type: boolean
-      - type: 'null'
-    MonitorMessageRole:
-      type: string
-      enum:
-      - system
-      - user
-      - assistant
-      - tool
-      - developer
-    Conversation:
-      properties:
-        id:
-          type: string
-          title: Id
-      type: object
-      required:
-      - id
-      title: Conversation
-    CompletionTokensDetails:
-      properties:
-        accepted_prediction_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Accepted Prediction Tokens
-        audio_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Audio Tokens
-        reasoning_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Reasoning Tokens
-        rejected_prediction_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Rejected Prediction Tokens
-      additionalProperties: true
-      type: object
-      title: CompletionTokensDetails
-      description: Breakdown of tokens used in a completion.
-    ToolUseBlock:
-      properties:
-        type:
-          type: string
-          const: tool_use
-          title: Type
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        input:
-          additionalProperties:
-            $ref: '#/components/schemas/JSONValue-Output'
-          type: object
-          title: Input
-      type: object
-      required:
-      - type
-      - id
-      - name
-      - input
-      title: ToolUseBlock
-      description: Tool use block for Anthropic responses
-    GeminiPromptFeedback:
-      properties:
-        safety_ratings:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/GeminiSafetyRating'
-            type: array
-          - type: 'null'
-          title: Safety Ratings
-      type: object
-      title: GeminiPromptFeedback
-    GeminiContent:
-      properties:
-        parts:
-          items:
-            $ref: '#/components/schemas/GeminiPart'
-          type: array
-          title: Parts
-        role:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Role
-      type: object
-      required:
-      - parts
-      title: GeminiContent
-    ChatCompletionRequestMessage:
-      properties:
-        role:
-          type: string
-          enum:
-          - system
-          - user
-          - assistant
-          - tool
-          - function
-          - developer
-          title: Role
-        content:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Content
-        tool_calls:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ChatCompletionMessageFunctionToolCall'
-            type: array
-          - type: 'null'
-          title: Tool Calls
-        tool_call_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tool Call Id
-      type: object
-      required:
-      - role
-      title: ChatCompletionRequestMessage
-    api__types__requests__openai_request__ToolFunction:
-      properties:
-        name:
-          type: string
-          title: Name
-        description:
-          type: string
-          title: Description
-        parameters:
-          additionalProperties: true
-          type: object
-          title: Parameters
-        required:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Required
-      type: object
-      required:
-      - name
-      - description
-      - parameters
-      title: ToolFunction
-    Tool:
-      properties:
-        type:
-          type: string
-          title: Type
-        function:
-          $ref: '#/components/schemas/api__types__requests__openai_request__ToolFunction'
-      type: object
-      required:
-      - type
-      - function
-      title: Tool
-    Prompt:
-      properties:
-        id:
-          type: string
-          title: Id
-        variables:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Variables
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Version
-      type: object
-      required:
-      - id
-      title: Prompt
-    RuleDescription:
-      properties:
-        rule:
-          type: integer
-          title: Rule
-        name:
-          type: string
-          title: Name
-        description:
-          type: string
-          title: Description
-      type: object
-      title: RuleDescription
-      description: Schema for violated rule descriptions used in MonitoringResponse.
-    PromptTokensDetails:
-      properties:
-        audio_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Audio Tokens
-        cached_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Cached Tokens
-      additionalProperties: true
-      type: object
-      title: PromptTokensDetails
-      description: Breakdown of tokens used in the prompt.
-    GeminiGenerateContentResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        candidates:
-          items:
-            $ref: '#/components/schemas/GeminiCandidate'
-          type: array
-          title: Candidates
-        prompt_feedback:
-          anyOf:
-          - $ref: '#/components/schemas/GeminiPromptFeedback'
-          - type: 'null'
-        usage_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/GeminiUsageMetadata'
-          - type: 'null'
-      type: object
-      required:
-      - id
-      - candidates
-      title: GeminiGenerateContentResponse
-    GeminiSafetyRating:
-      properties:
-        category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Category
-        probability:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Probability
-        blocked:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Blocked
-      additionalProperties: true
-      type: object
-      title: GeminiSafetyRating
-    SystemPromptScannerConfig:
-      properties:
-        system_prompt:
-          type: string
-          title: System Prompt
-      type: object
-      title: SystemPromptScannerConfig
-      description: Configuration for the system prompt scanner.
-    ResponseUsage:
-      properties:
-        prompt_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prompt Tokens
-        completion_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Completion Tokens
-        total_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Tokens
-        input_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Input Tokens
-        output_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Output Tokens
-      additionalProperties: true
-      type: object
-      title: ResponseUsage
+      - $ref: '#/components/schemas/JSONPrimitive'
+      - items:
+          $ref: '#/components/schemas/JSONValue-Input'
+        type: array
+      - additionalProperties:
+          $ref: '#/components/schemas/JSONValue-Input'
+        type: object
     GeminiStreamCandidate:
       properties:
         content:
@@ -1041,79 +964,270 @@ components:
       required:
       - content
       title: GeminiStreamCandidate
-    MonitorMessage:
+    api__types__responses__openai_response__CreateChatCompletionResponse:
       properties:
-        role:
-          $ref: '#/components/schemas/MonitorMessageRole'
+        id:
+          type: string
+          title: Id
+        choices:
+          items:
+            $ref: '#/components/schemas/ChatCompletionChoice'
+          type: array
+          title: Choices
+        created:
+          type: integer
+          title: Created
+        model:
+          type: string
+          title: Model
+        object:
+          type: string
+          const: chat.completion
+          title: Object
+        system_fingerprint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: System Fingerprint
+        usage:
+          anyOf:
+          - $ref: '#/components/schemas/CompletionUsage'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - choices
+      - created
+      - model
+      - object
+      title: CreateChatCompletionResponse
+      description: Based on OpenAI's official Completion type
+      examples:
+      - choices:
+        - finish_reason: stop
+          index: 0
+          message:
+            content: Sure, just let me know what you'd like me to help with!
+            role: assistant
+        created: 1987654321
+        id: '1234567890'
+        model: gpt-4o
+        object: chat.completion
+        system_fingerprint: v-0.2
+    MonitorTool:
+      additionalProperties:
+        $ref: '#/components/schemas/JSONValue-Input'
+      type: object
+    SystemPromptScannerConfig:
+      properties:
+        system_prompt:
+          type: string
+          title: System Prompt
+      type: object
+      title: SystemPromptScannerConfig
+      description: Configuration for the system prompt scanner.
+    CreateResponseRequest:
+      properties:
+        background:
+          type: boolean
+          title: Background
+          default: false
+        conversation:
+          anyOf:
+          - type: string
+          - $ref: '#/components/schemas/Conversation'
+          - type: 'null'
+          title: Conversation
+        include:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Include
+        input:
+          anyOf:
+          - type: string
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Input
+        instructions:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Instructions
+        max_output_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Output Tokens
+        max_tool_calls:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Tool Calls
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+        model:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Model
+        parallel_tool_calls:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Parallel Tool Calls
+          default: true
+        previous_response:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Previous Response
+        prompt:
+          anyOf:
+          - $ref: '#/components/schemas/Prompt'
+          - type: 'null'
+        prompt_cache_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Prompt Cache Key
+        reasoning:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Reasoning
+        safety_identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Safety Identifier
+        service_tier:
+          anyOf:
+          - type: string
+            enum:
+            - auto
+            - default
+            - flex
+            - scale
+            - priority
+          - type: 'null'
+          title: Service Tier
+        store:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Store
+          default: true
+        stream:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Stream
+          default: false
+        stream_options:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: Stream Options
+        temperature:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Temperature
+        text:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: Text
+        tool_choice:
+          anyOf:
+          - type: string
+            enum:
+            - none
+            - auto
+            - required
+          - $ref: '#/components/schemas/ToolChoice'
+          title: Tool Choice
+          default: auto
+        tools:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Tools
+        top_logprobs:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Top Logprobs
+        top_p:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Top P
+        truncation:
+          anyOf:
+          - type: string
+            enum:
+            - auto
+            - disabled
+          - type: 'null'
+          title: Truncation
+          default: disabled
+        user:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User
+        monitor_details:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Monitor Details
+        policy_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Policy Id
+      type: object
+      title: CreateResponseRequest
+    GeminiCandidate:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
         content:
+          $ref: '#/components/schemas/GeminiContent'
+        finish_reason:
           anyOf:
           - type: string
+          - type: 'null'
+          title: Finish Reason
+        index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Index
+        safety_ratings:
+          anyOf:
           - items:
-              $ref: '#/components/schemas/MonitorMessageContentPart'
+              $ref: '#/components/schemas/GeminiSafetyRating'
             type: array
           - type: 'null'
-          title: Content
-        tool_calls:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ChatCompletionMessageFunctionToolCall'
-            type: array
-          - type: 'null'
-          title: Tool Calls
-        tool_call_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tool Call Id
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
+          title: Safety Ratings
       type: object
       required:
-      - role
-      title: MonitorMessage
-    Function:
-      properties:
-        arguments:
-          type: string
-          title: Arguments
-        name:
-          type: string
-          title: Name
-      additionalProperties: true
-      type: object
-      required:
-      - arguments
-      - name
-      title: Function
-      description: The function that the model called.
-    ResponseError:
-      properties:
-        message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Message
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-        code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Code
-        param:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Param
-      additionalProperties: true
-      type: object
-      title: ResponseError
+      - content
+      title: GeminiCandidate
     MonitorMessageContentPart:
       properties:
         type:
@@ -1153,25 +1267,45 @@ components:
       required:
       - type
       title: MonitorMessageContentPart
-    GeminiUsageMetadata:
+    JSONValue-Output:
+      anyOf:
+      - $ref: '#/components/schemas/JSONPrimitive'
+      - items:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: array
+      - additionalProperties:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: object
+    ResponseUsage:
       properties:
-        prompt_token_count:
+        prompt_tokens:
           anyOf:
           - type: integer
           - type: 'null'
-          title: Prompt Token Count
-        candidates_token_count:
+          title: Prompt Tokens
+        completion_tokens:
           anyOf:
           - type: integer
           - type: 'null'
-          title: Candidates Token Count
-        total_token_count:
+          title: Completion Tokens
+        total_tokens:
           anyOf:
           - type: integer
           - type: 'null'
-          title: Total Token Count
+          title: Total Tokens
+        input_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Input Tokens
+        output_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Output Tokens
+      additionalProperties: true
       type: object
-      title: GeminiUsageMetadata
+      title: ResponseUsage
     CreateChatCompletionRequest:
       properties:
         messages:
@@ -1357,6 +1491,258 @@ components:
       - messages
       - model
       title: CreateChatCompletionRequest
+    GeminiSafetyRating:
+      properties:
+        category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category
+        probability:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Probability
+        blocked:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Blocked
+      additionalProperties: true
+      type: object
+      title: GeminiSafetyRating
+    PIIScannerConfig:
+      properties:
+        pii_types:
+          items:
+            type: string
+          type: array
+          title: Pii Types
+      type: object
+      title: PIIScannerConfig
+      description: Configuration for the PII scanner.
+    ToolUseBlock:
+      properties:
+        type:
+          type: string
+          const: tool_use
+          title: Type
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        input:
+          additionalProperties:
+            $ref: '#/components/schemas/JSONValue-Output'
+          type: object
+          title: Input
+      type: object
+      required:
+      - type
+      - id
+      - name
+      - input
+      title: ToolUseBlock
+      description: Tool use block for Anthropic responses
+    ChatCompletionRequestMessage:
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+          - function
+          - developer
+          title: Role
+        content:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content
+        tool_calls:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ChatCompletionMessageFunctionToolCall'
+            type: array
+          - type: 'null'
+          title: Tool Calls
+        tool_call_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tool Call Id
+      type: object
+      required:
+      - role
+      title: ChatCompletionRequestMessage
+    IgnoredInput:
+      properties:
+        type:
+          type: string
+          const: media
+          title: Type
+        reason:
+          type: string
+          const: text_moderation_only
+          title: Reason
+        description:
+          type: string
+          title: Description
+      type: object
+      required:
+      - type
+      - reason
+      - description
+      title: IgnoredInput
+      description: Schema for inputs intentionally excluded before moderation.
+    GeminiUsageMetadata:
+      properties:
+        prompt_token_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Prompt Token Count
+        candidates_token_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Candidates Token Count
+        total_token_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Token Count
+      type: object
+      title: GeminiUsageMetadata
+    ChatCompletionResponseMessage:
+      properties:
+        content:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content
+        role:
+          type: string
+          const: assistant
+          title: Role
+        tool_calls:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ChatCompletionMessageFunctionToolCall'
+            type: array
+          - type: 'null'
+          title: Tool Calls
+      type: object
+      required:
+      - role
+      title: ChatCompletionResponseMessage
+    AnthropicUsage:
+      properties:
+        input_tokens:
+          type: integer
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          title: Output Tokens
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      title: AnthropicUsage
+      description: Usage information for Anthropic API
+    Tool:
+      properties:
+        type:
+          type: string
+          title: Type
+        function:
+          $ref: '#/components/schemas/api__types__requests__openai_request__ToolFunction'
+      type: object
+      required:
+      - type
+      - function
+      title: Tool
+    MonitorMessageRole:
+      type: string
+      enum:
+      - system
+      - user
+      - assistant
+      - tool
+      - developer
+    JSONPrimitive:
+      anyOf:
+      - type: string
+      - type: integer
+      - type: number
+      - type: boolean
+      - type: 'null'
+    GeminiGenerateContentResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        candidates:
+          items:
+            $ref: '#/components/schemas/GeminiCandidate'
+          type: array
+          title: Candidates
+        prompt_feedback:
+          anyOf:
+          - $ref: '#/components/schemas/GeminiPromptFeedback'
+          - type: 'null'
+        usage_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/GeminiUsageMetadata'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - candidates
+      title: GeminiGenerateContentResponse
+    api__types__requests__openai_request__ToolFunction:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        parameters:
+          additionalProperties: true
+          type: object
+          title: Parameters
+        required:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Required
+      type: object
+      required:
+      - name
+      - description
+      - parameters
+      title: ToolFunction
+    RuleDescription:
+      properties:
+        rule:
+          type: integer
+          title: Rule
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+      type: object
+      title: RuleDescription
+      description: Schema for violated rule descriptions used in MonitoringResponse.
     api__types__responses__anthropic_response__CreateChatCompletionResponse:
       properties:
         id:
@@ -1404,504 +1790,15 @@ components:
       - model
       title: CreateChatCompletionResponse
       description: Anthropic message response
-    GeminiCandidate:
-      properties:
-        id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Id
-        content:
-          $ref: '#/components/schemas/GeminiContent'
-        finish_reason:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Finish Reason
-        index:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Index
-        safety_ratings:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/GeminiSafetyRating'
-            type: array
-          - type: 'null'
-          title: Safety Ratings
-      type: object
-      required:
-      - content
-      title: GeminiCandidate
-    ChatCompletionResponseMessage:
-      properties:
-        content:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Content
-        role:
-          type: string
-          const: assistant
-          title: Role
-        tool_calls:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ChatCompletionMessageFunctionToolCall'
-            type: array
-          - type: 'null'
-          title: Tool Calls
-      type: object
-      required:
-      - role
-      title: ChatCompletionResponseMessage
-    CompletionUsage:
-      properties:
-        completion_tokens:
-          type: integer
-          title: Completion Tokens
-        prompt_tokens:
-          type: integer
-          title: Prompt Tokens
-        total_tokens:
-          type: integer
-          title: Total Tokens
-        completion_tokens_details:
-          anyOf:
-          - $ref: '#/components/schemas/CompletionTokensDetails'
-          - type: 'null'
-        prompt_tokens_details:
-          anyOf:
-          - $ref: '#/components/schemas/PromptTokensDetails'
-          - type: 'null'
-      additionalProperties: true
-      type: object
-      required:
-      - completion_tokens
-      - prompt_tokens
-      - total_tokens
-      title: CompletionUsage
-      description: Usage statistics for the completion request.
-    GeminiPart:
-      properties:
-        text:
-          type: string
-          title: Text
-      type: object
-      required:
-      - text
-      title: GeminiPart
-    JSONValue-Input:
-      anyOf:
-      - $ref: '#/components/schemas/JSONPrimitive'
-      - items:
-          $ref: '#/components/schemas/JSONValue-Input'
-        type: array
-      - additionalProperties:
-          $ref: '#/components/schemas/JSONValue-Input'
-        type: object
-    ContentBlock-Output:
-      properties:
-        type:
-          type: string
-          const: text
-          title: Type
-        text:
-          type: string
-          title: Text
-      type: object
-      required:
-      - type
-      - text
-      title: ContentBlock
-      description: Base content block for Anthropic responses
-    api__types__responses__openai_response__CreateChatCompletionResponse:
+    Conversation:
       properties:
         id:
           type: string
           title: Id
-        choices:
-          items:
-            $ref: '#/components/schemas/ChatCompletionChoice'
-          type: array
-          title: Choices
-        created:
-          type: integer
-          title: Created
-        model:
-          type: string
-          title: Model
-        object:
-          type: string
-          const: chat.completion
-          title: Object
-        system_fingerprint:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: System Fingerprint
-        usage:
-          anyOf:
-          - $ref: '#/components/schemas/CompletionUsage'
-          - type: 'null'
       type: object
       required:
       - id
-      - choices
-      - created
-      - model
-      - object
-      title: CreateChatCompletionResponse
-      description: Based on OpenAI's official Completion type
-      examples:
-      - choices:
-        - finish_reason: stop
-          index: 0
-          message:
-            content: Sure, just let me know what you'd like me to help with!
-            role: assistant
-        created: 1987654321
-        id: '1234567890'
-        model: gpt-4o
-        object: chat.completion
-        system_fingerprint: v-0.2
-    MonitorTool:
-      additionalProperties:
-        $ref: '#/components/schemas/JSONValue-Input'
-      type: object
-    JSONValue-Output:
-      anyOf:
-      - $ref: '#/components/schemas/JSONPrimitive'
-      - items:
-          $ref: '#/components/schemas/JSONValue-Output'
-        type: array
-      - additionalProperties:
-          $ref: '#/components/schemas/JSONValue-Output'
-        type: object
-    ResponseMessage:
-      properties:
-        role:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Role
-        content:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Content
-      additionalProperties: true
-      type: object
-      title: ResponseMessage
-    IgnoredInput:
-      properties:
-        type:
-          type: string
-          const: media
-          title: Type
-        reason:
-          type: string
-          const: text_moderation_only
-          title: Reason
-        description:
-          type: string
-          title: Description
-      type: object
-      required:
-      - type
-      - reason
-      - description
-      title: IgnoredInput
-      description: Schema for inputs intentionally excluded before moderation.
-    CreateResponseRequest:
-      properties:
-        background:
-          type: boolean
-          title: Background
-          default: false
-        conversation:
-          anyOf:
-          - type: string
-          - $ref: '#/components/schemas/Conversation'
-          - type: 'null'
-          title: Conversation
-        include:
-          anyOf:
-          - items: {}
-            type: array
-          - type: 'null'
-          title: Include
-        input:
-          anyOf:
-          - type: string
-          - items: {}
-            type: array
-          - type: 'null'
-          title: Input
-        instructions:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Instructions
-        max_output_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Max Output Tokens
-        max_tool_calls:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Max Tool Calls
-        metadata:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Metadata
-        model:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Model
-        parallel_tool_calls:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Parallel Tool Calls
-          default: true
-        previous_response:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Previous Response
-        prompt:
-          anyOf:
-          - $ref: '#/components/schemas/Prompt'
-          - type: 'null'
-        prompt_cache_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Prompt Cache Key
-        reasoning:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Reasoning
-        safety_identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Safety Identifier
-        service_tier:
-          anyOf:
-          - type: string
-            enum:
-            - auto
-            - default
-            - flex
-            - scale
-            - priority
-          - type: 'null'
-          title: Service Tier
-        store:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Store
-          default: true
-        stream:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Stream
-          default: false
-        stream_options:
-          anyOf:
-          - {}
-          - type: 'null'
-          title: Stream Options
-        temperature:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Temperature
-        text:
-          anyOf:
-          - {}
-          - type: 'null'
-          title: Text
-        tool_choice:
-          anyOf:
-          - type: string
-            enum:
-            - none
-            - auto
-            - required
-          - $ref: '#/components/schemas/ToolChoice'
-          title: Tool Choice
-          default: auto
-        tools:
-          anyOf:
-          - items: {}
-            type: array
-          - type: 'null'
-          title: Tools
-        top_logprobs:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Top Logprobs
-        top_p:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Top P
-        truncation:
-          anyOf:
-          - type: string
-            enum:
-            - auto
-            - disabled
-          - type: 'null'
-          title: Truncation
-          default: disabled
-        user:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User
-        monitor_details:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Monitor Details
-        policy_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Policy Id
-      type: object
-      title: CreateResponseRequest
-    ChatCompletionMessageFunctionToolCall:
-      properties:
-        id:
-          type: string
-          title: Id
-        function:
-          $ref: '#/components/schemas/Function'
-        type:
-          type: string
-          const: function
-          title: Type
-      additionalProperties: true
-      type: object
-      required:
-      - id
-      - function
-      - type
-      title: ChatCompletionMessageFunctionToolCall
-      description: A call to a function tool created by the model.
-    MonitoringResponse:
-      properties:
-        violation:
-          type: number
-          title: Violation
-          default: 0.0
-        observe_violation:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Observe Violation
-        violated_rules:
-          items:
-            type: integer
-          type: array
-          title: Violated Rules
-          default: []
-        violated_rule_descriptions:
-          items:
-            $ref: '#/components/schemas/RuleDescription'
-          type: array
-          title: Violated Rule Descriptions
-          default: []
-        ignored_inputs:
-          items:
-            $ref: '#/components/schemas/IgnoredInput'
-          type: array
-          title: Ignored Inputs
-          default: []
-        ipi:
-          type: boolean
-          title: Ipi
-          default: false
-        mutation:
-          type: boolean
-          title: Mutation
-          default: false
-        scanner_output:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Scanner Output
-        reasoning:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Reasoning
-        input_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Input Tokens
-        output_tokens:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Output Tokens
-        activity_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Activity Id
-        block_message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Block Message
-        error:
-          type: boolean
-          title: Error
-          default: false
-        error_message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error Message
-      type: object
-      title: MonitoringResponse
-      description: 'Response schema for monitoring/moderation results.
-
-
-        Also used as the structure for pre_analysis and post_generation_analysis
-
-        dicts in activity logging.'
-    ToolChoice:
-      properties:
-        type:
-          type: string
-          title: Type
-        function:
-          $ref: '#/components/schemas/ToolChoiceName'
-      type: object
-      required:
-      - type
-      - function
-      title: ToolChoice
+      title: Conversation
     ChatCompletionChoice:
       properties:
         finish_reason:
@@ -1929,14 +1826,117 @@ components:
       - index
       - message
       title: ChatCompletionChoice
-    GeminiStreamChunkResponse:
+    GeminiPart:
       properties:
-        candidates:
-          items:
-            $ref: '#/components/schemas/GeminiStreamCandidate'
-          type: array
-          title: Candidates
+        text:
+          type: string
+          title: Text
       type: object
       required:
-      - candidates
-      title: GeminiStreamChunkResponse
+      - text
+      title: GeminiPart
+    Function:
+      properties:
+        arguments:
+          type: string
+          title: Arguments
+        name:
+          type: string
+          title: Name
+      additionalProperties: true
+      type: object
+      required:
+      - arguments
+      - name
+      title: Function
+      description: The function that the model called.
+    MonitorMessage:
+      properties:
+        role:
+          $ref: '#/components/schemas/MonitorMessageRole'
+        content:
+          anyOf:
+          - type: string
+          - items:
+              $ref: '#/components/schemas/MonitorMessageContentPart'
+            type: array
+          - type: 'null'
+          title: Content
+        tool_calls:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ChatCompletionMessageFunctionToolCall'
+            type: array
+          - type: 'null'
+          title: Tool Calls
+        tool_call_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tool Call Id
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      type: object
+      required:
+      - role
+      title: MonitorMessage
+    GeminiPromptFeedback:
+      properties:
+        safety_ratings:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/GeminiSafetyRating'
+            type: array
+          - type: 'null'
+          title: Safety Ratings
+      type: object
+      title: GeminiPromptFeedback
+    ChatCompletionMessageFunctionToolCall:
+      properties:
+        id:
+          type: string
+          title: Id
+        function:
+          $ref: '#/components/schemas/Function'
+        type:
+          type: string
+          const: function
+          title: Type
+      additionalProperties: true
+      type: object
+      required:
+      - id
+      - function
+      - type
+      title: ChatCompletionMessageFunctionToolCall
+      description: A call to a function tool created by the model.
+    CompletionUsage:
+      properties:
+        completion_tokens:
+          type: integer
+          title: Completion Tokens
+        prompt_tokens:
+          type: integer
+          title: Prompt Tokens
+        total_tokens:
+          type: integer
+          title: Total Tokens
+        completion_tokens_details:
+          anyOf:
+          - $ref: '#/components/schemas/CompletionTokensDetails'
+          - type: 'null'
+        prompt_tokens_details:
+          anyOf:
+          - $ref: '#/components/schemas/PromptTokensDetails'
+          - type: 'null'
+      additionalProperties: true
+      type: object
+      required:
+      - completion_tokens
+      - prompt_tokens
+      - total_tokens
+      title: CompletionUsage
+      description: Usage statistics for the completion request.
