@@ -118,6 +118,15 @@ paths:
       - Activity
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     StandardErrorResponse:
       properties:
         error:
@@ -147,6 +156,15 @@ components:
       - message
       - detail
       title: StandardErrorResponse
+    JSONValue-Output:
+      anyOf:
+      - $ref: '#/components/schemas/JSONPrimitive'
+      - items:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: array
+      - additionalProperties:
+          $ref: '#/components/schemas/JSONValue-Output'
+        type: object
     ValidationError:
       properties:
         loc:
@@ -196,15 +214,6 @@ components:
       - has_more
       title: ActivityExportResponse
       description: Response format for exporting organization activity records.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     JSONPrimitive:
       anyOf:
       - type: string
@@ -212,12 +221,3 @@ components:
       - type: number
       - type: boolean
       - type: 'null'
-    JSONValue-Output:
-      anyOf:
-      - $ref: '#/components/schemas/JSONPrimitive'
-      - items:
-          $ref: '#/components/schemas/JSONValue-Output'
-        type: array
-      - additionalProperties:
-          $ref: '#/components/schemas/JSONValue-Output'
-        type: object

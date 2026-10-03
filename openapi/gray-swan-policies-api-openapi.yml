@@ -451,347 +451,53 @@ paths:
       - Policies
 components:
   schemas:
-    PIIScannerConfig:
-      properties:
-        pii_types:
-          items:
-            type: string
-          type: array
-          title: Pii Types
-      type: object
-      title: PIIScannerConfig
-      description: Configuration for the PII scanner.
-    BulkPolicyImportResponse:
-      properties:
-        total:
-          type: integer
-          title: Total
-        successful:
-          type: integer
-          title: Successful
-        failed:
-          type: integer
-          title: Failed
-        results:
-          items:
-            $ref: '#/components/schemas/PolicyImportResult'
-          type: array
-          title: Results
-      type: object
-      required:
-      - total
-      - successful
-      - failed
-      - results
-      title: BulkPolicyImportResponse
-      description: Response for bulk import operation.
-    PolicyVersionSummary:
-      properties:
-        id:
-          type: string
-          title: Id
-        operation:
-          type: string
-          title: Operation
-        timestamp:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Timestamp
-        user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User Id
-        diff:
-          anyOf:
-          - items:
-              additionalProperties: true
-              type: object
-            type: array
-          - type: 'null'
-          title: Diff
-      type: object
-      required:
-      - id
-      - operation
-      title: PolicyVersionSummary
-      description: Version metadata for list endpoint.
-    PolicyVersionDetailResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        policy_id:
-          type: string
-          title: Policy Id
-        operation:
-          type: string
-          title: Operation
-        timestamp:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Timestamp
-        user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User Id
-        policy_state:
-          $ref: '#/components/schemas/PolicyDetailResponse'
-      type: object
-      required:
-      - id
-      - policy_id
-      - operation
-      - policy_state
-      title: PolicyVersionDetailResponse
-      description: Response for single version with reconstructed state.
-    PolicyUpdateRequest:
-      properties:
-        name:
-          anyOf:
-          - type: string
-            maxLength: 255
-            minLength: 1
-          - type: 'null'
-          title: Name
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-        categories:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Categories
-        rule_modes:
-          anyOf:
-          - additionalProperties:
-              type: string
-              enum:
-              - block
-              - observe
-              - disabled
-            type: object
-          - type: 'null'
-          title: Rule Modes
-        mode:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Mode
-        pre_violation_threshold:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Pre Violation Threshold
-        pre_jb_threshold:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Pre Jb Threshold
-        post_violation_threshold:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Post Violation Threshold
-        post_violation_jb_threshold:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Post Violation Jb Threshold
-        scanners_config:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - $ref: '#/components/schemas/PIIScannerConfig'
-              - $ref: '#/components/schemas/SystemPromptScannerConfig'
-              - additionalProperties: true
-                type: object
-            type: object
-          - type: 'null'
-          title: Scanners Config
-        block_message:
-          anyOf:
-          - type: string
-            maxLength: 2000
-          - type: 'null'
-          title: Block Message
-      type: object
-      title: PolicyUpdateRequest
-      description: Request body for updating an existing policy (all fields optional).
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PolicyExportResponse:
+    BulkPolicyImportRequest:
       properties:
         policies:
           items:
             $ref: '#/components/schemas/PolicyExportData'
           type: array
+          maxItems: 100
+          minItems: 1
           title: Policies
-        export_date:
-          type: string
-          format: date-time
-          title: Export Date
-        export_version:
-          type: string
-          title: Export Version
-          default: '1.0'
-        total:
-          type: integer
-          title: Total
       type: object
       required:
       - policies
-      - export_date
-      - total
-      title: PolicyExportResponse
-      description: Response for policy export.
-    PolicyVersionListResponse:
+      title: BulkPolicyImportRequest
+      description: Request body for bulk importing multiple policies.
+    HTTPValidationError:
       properties:
-        policy_id:
-          type: string
-          title: Policy Id
-        versions:
+        detail:
           items:
-            $ref: '#/components/schemas/PolicyVersionSummary'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Versions
-        total:
-          type: integer
-          title: Total
+          title: Detail
       type: object
-      required:
-      - policy_id
-      - versions
-      - total
-      title: PolicyVersionListResponse
-      description: Response for version list endpoint.
-    PolicyDetailResponse:
+      title: HTTPValidationError
+    PolicyImportResult:
       properties:
-        id:
-          type: string
-          title: Id
         name:
           type: string
           title: Name
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-        rules:
-          additionalProperties:
-            type: string
-          type: object
-          title: Rules
-        rule_modes:
-          additionalProperties:
-            type: string
-            enum:
-            - block
-            - observe
-            - disabled
-          type: object
-          title: Rule Modes
-        mode:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Mode
-        pre_violation_threshold:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Pre Violation Threshold
-        pre_jb_threshold:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Pre Jb Threshold
-        post_violation_threshold:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Post Violation Threshold
-        post_violation_jb_threshold:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Post Violation Jb Threshold
-        scanners_config:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Scanners Config
-        block_message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Block Message
-        is_preset:
+        success:
           type: boolean
-          title: Is Preset
-          default: false
-        created_at:
+          title: Success
+        id:
           anyOf:
           - type: string
-            format: date-time
           - type: 'null'
-          title: Created At
-        updated_at:
+          title: Id
+        error:
           anyOf:
           - type: string
-            format: date-time
           - type: 'null'
-          title: Updated At
+          title: Error
       type: object
       required:
-      - id
       - name
-      - rules
-      title: PolicyDetailResponse
-      description: Full policy response with all fields.
+      - success
+      title: PolicyImportResult
+      description: Result for a single policy import.
     PolicyCreateRequest:
       properties:
         name:
@@ -884,23 +590,6 @@ components:
       - name
       title: PolicyCreateRequest
       description: Request body for creating a new policy.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    SystemPromptScannerConfig:
-      properties:
-        system_prompt:
-          type: string
-          title: System Prompt
-      type: object
-      title: SystemPromptScannerConfig
-      description: Configuration for the system prompt scanner.
     PolicyExportData:
       properties:
         name:
@@ -975,20 +664,186 @@ components:
       - name
       title: PolicyExportData
       description: Single policy export format (excludes org-specific and internal fields).
-    BulkPolicyImportRequest:
+    PIIScannerConfig:
       properties:
-        policies:
+        pii_types:
           items:
-            $ref: '#/components/schemas/PolicyExportData'
+            type: string
           type: array
-          maxItems: 100
-          minItems: 1
-          title: Policies
+          title: Pii Types
+      type: object
+      title: PIIScannerConfig
+      description: Configuration for the PII scanner.
+    PolicyVersionListResponse:
+      properties:
+        policy_id:
+          type: string
+          title: Policy Id
+        versions:
+          items:
+            $ref: '#/components/schemas/PolicyVersionSummary'
+          type: array
+          title: Versions
+        total:
+          type: integer
+          title: Total
       type: object
       required:
-      - policies
-      title: BulkPolicyImportRequest
-      description: Request body for bulk importing multiple policies.
+      - policy_id
+      - versions
+      - total
+      title: PolicyVersionListResponse
+      description: Response for version list endpoint.
+    PolicyUpdateRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 255
+            minLength: 1
+          - type: 'null'
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        categories:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Categories
+        rule_modes:
+          anyOf:
+          - additionalProperties:
+              type: string
+              enum:
+              - block
+              - observe
+              - disabled
+            type: object
+          - type: 'null'
+          title: Rule Modes
+        mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mode
+        pre_violation_threshold:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Pre Violation Threshold
+        pre_jb_threshold:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Pre Jb Threshold
+        post_violation_threshold:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Post Violation Threshold
+        post_violation_jb_threshold:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Post Violation Jb Threshold
+        scanners_config:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - $ref: '#/components/schemas/PIIScannerConfig'
+              - $ref: '#/components/schemas/SystemPromptScannerConfig'
+              - additionalProperties: true
+                type: object
+            type: object
+          - type: 'null'
+          title: Scanners Config
+        block_message:
+          anyOf:
+          - type: string
+            maxLength: 2000
+          - type: 'null'
+          title: Block Message
+      type: object
+      title: PolicyUpdateRequest
+      description: Request body for updating an existing policy (all fields optional).
+    PolicyVersionDetailResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        policy_id:
+          type: string
+          title: Policy Id
+        operation:
+          type: string
+          title: Operation
+        timestamp:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Timestamp
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+        policy_state:
+          $ref: '#/components/schemas/PolicyDetailResponse'
+      type: object
+      required:
+      - id
+      - policy_id
+      - operation
+      - policy_state
+      title: PolicyVersionDetailResponse
+      description: Response for single version with reconstructed state.
+    PolicyVersionSummary:
+      properties:
+        id:
+          type: string
+          title: Id
+        operation:
+          type: string
+          title: Operation
+        timestamp:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Timestamp
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+        diff:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Diff
+      type: object
+      required:
+      - id
+      - operation
+      title: PolicyVersionSummary
+      description: Version metadata for list endpoint.
     PolicyListResponse:
       properties:
         policies:
@@ -1018,30 +873,167 @@ components:
       - total
       title: PolicyListResponse
       description: Paginated response for policy list endpoint.
-    PolicyImportResult:
+    BulkPolicyImportResponse:
       properties:
+        total:
+          type: integer
+          title: Total
+        successful:
+          type: integer
+          title: Successful
+        failed:
+          type: integer
+          title: Failed
+        results:
+          items:
+            $ref: '#/components/schemas/PolicyImportResult'
+          type: array
+          title: Results
+      type: object
+      required:
+      - total
+      - successful
+      - failed
+      - results
+      title: BulkPolicyImportResponse
+      description: Response for bulk import operation.
+    PolicyDetailResponse:
+      properties:
+        id:
+          type: string
+          title: Id
         name:
           type: string
           title: Name
-        success:
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        rules:
+          additionalProperties:
+            type: string
+          type: object
+          title: Rules
+        rule_modes:
+          additionalProperties:
+            type: string
+            enum:
+            - block
+            - observe
+            - disabled
+          type: object
+          title: Rule Modes
+        mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mode
+        pre_violation_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pre Violation Threshold
+        pre_jb_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pre Jb Threshold
+        post_violation_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Post Violation Threshold
+        post_violation_jb_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Post Violation Jb Threshold
+        scanners_config:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Scanners Config
+        block_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Block Message
+        is_preset:
           type: boolean
-          title: Success
-        id:
+          title: Is Preset
+          default: false
+        created_at:
           anyOf:
           - type: string
+            format: date-time
           - type: 'null'
-          title: Id
-        error:
+          title: Created At
+        updated_at:
           anyOf:
           - type: string
+            format: date-time
           - type: 'null'
-          title: Error
+          title: Updated At
       type: object
       required:
+      - id
       - name
-      - success
-      title: PolicyImportResult
-      description: Result for a single policy import.
+      - rules
+      title: PolicyDetailResponse
+      description: Full policy response with all fields.
+    PolicyExportResponse:
+      properties:
+        policies:
+          items:
+            $ref: '#/components/schemas/PolicyExportData'
+          type: array
+          title: Policies
+        export_date:
+          type: string
+          format: date-time
+          title: Export Date
+        export_version:
+          type: string
+          title: Export Version
+          default: '1.0'
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - policies
+      - export_date
+      - total
+      title: PolicyExportResponse
+      description: Response for policy export.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     PolicyImportRequest:
       properties:
         policy:
@@ -1051,3 +1043,11 @@ components:
       - policy
       title: PolicyImportRequest
       description: Request body for importing a single policy.
+    SystemPromptScannerConfig:
+      properties:
+        system_prompt:
+          type: string
+          title: System Prompt
+      type: object
+      title: SystemPromptScannerConfig
+      description: Configuration for the system prompt scanner.
