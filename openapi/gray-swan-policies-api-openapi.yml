@@ -451,53 +451,62 @@ paths:
       - Policies
 components:
   schemas:
-    BulkPolicyImportRequest:
+    BulkPolicyImportResponse:
       properties:
-        policies:
+        total:
+          type: integer
+          title: Total
+        successful:
+          type: integer
+          title: Successful
+        failed:
+          type: integer
+          title: Failed
+        results:
           items:
-            $ref: '#/components/schemas/PolicyExportData'
+            $ref: '#/components/schemas/PolicyImportResult'
           type: array
-          maxItems: 100
-          minItems: 1
-          title: Policies
+          title: Results
       type: object
       required:
-      - policies
-      title: BulkPolicyImportRequest
-      description: Request body for bulk importing multiple policies.
-    HTTPValidationError:
+      - total
+      - successful
+      - failed
+      - results
+      title: BulkPolicyImportResponse
+      description: Response for bulk import operation.
+    PolicyVersionDetailResponse:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PolicyImportResult:
-      properties:
-        name:
-          type: string
-          title: Name
-        success:
-          type: boolean
-          title: Success
         id:
-          anyOf:
-          - type: string
-          - type: 'null'
+          type: string
           title: Id
-        error:
+        policy_id:
+          type: string
+          title: Policy Id
+        operation:
+          type: string
+          title: Operation
+        timestamp:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Timestamp
+        user_id:
           anyOf:
           - type: string
           - type: 'null'
-          title: Error
+          title: User Id
+        policy_state:
+          $ref: '#/components/schemas/PolicyDetailResponse'
       type: object
       required:
-      - name
-      - success
-      title: PolicyImportResult
-      description: Result for a single policy import.
+      - id
+      - policy_id
+      - operation
+      - policy_state
+      title: PolicyVersionDetailResponse
+      description: Response for single version with reconstructed state.
     PolicyCreateRequest:
       properties:
         name:
@@ -664,36 +673,6 @@ components:
       - name
       title: PolicyExportData
       description: Single policy export format (excludes org-specific and internal fields).
-    PIIScannerConfig:
-      properties:
-        pii_types:
-          items:
-            type: string
-          type: array
-          title: Pii Types
-      type: object
-      title: PIIScannerConfig
-      description: Configuration for the PII scanner.
-    PolicyVersionListResponse:
-      properties:
-        policy_id:
-          type: string
-          title: Policy Id
-        versions:
-          items:
-            $ref: '#/components/schemas/PolicyVersionSummary'
-          type: array
-          title: Versions
-        total:
-          type: integer
-          title: Total
-      type: object
-      required:
-      - policy_id
-      - versions
-      - total
-      title: PolicyVersionListResponse
-      description: Response for version list endpoint.
     PolicyUpdateRequest:
       properties:
         name:
@@ -779,124 +758,36 @@ components:
       type: object
       title: PolicyUpdateRequest
       description: Request body for updating an existing policy (all fields optional).
-    PolicyVersionDetailResponse:
+    PIIScannerConfig:
       properties:
-        id:
-          type: string
-          title: Id
+        pii_types:
+          items:
+            type: string
+          type: array
+          title: Pii Types
+      type: object
+      title: PIIScannerConfig
+      description: Configuration for the PII scanner.
+    PolicyVersionListResponse:
+      properties:
         policy_id:
           type: string
           title: Policy Id
-        operation:
-          type: string
-          title: Operation
-        timestamp:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Timestamp
-        user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User Id
-        policy_state:
-          $ref: '#/components/schemas/PolicyDetailResponse'
+        versions:
+          items:
+            $ref: '#/components/schemas/PolicyVersionSummary'
+          type: array
+          title: Versions
+        total:
+          type: integer
+          title: Total
       type: object
       required:
-      - id
       - policy_id
-      - operation
-      - policy_state
-      title: PolicyVersionDetailResponse
-      description: Response for single version with reconstructed state.
-    PolicyVersionSummary:
-      properties:
-        id:
-          type: string
-          title: Id
-        operation:
-          type: string
-          title: Operation
-        timestamp:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Timestamp
-        user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User Id
-        diff:
-          anyOf:
-          - items:
-              additionalProperties: true
-              type: object
-            type: array
-          - type: 'null'
-          title: Diff
-      type: object
-      required:
-      - id
-      - operation
-      title: PolicyVersionSummary
-      description: Version metadata for list endpoint.
-    PolicyListResponse:
-      properties:
-        policies:
-          items:
-            $ref: '#/components/schemas/PolicyDetailResponse'
-          type: array
-          title: Policies
-        total:
-          type: integer
-          title: Total
-        limit:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Limit
-        offset:
-          type: integer
-          title: Offset
-          default: 0
-        has_more:
-          type: boolean
-          title: Has More
-          default: false
-      type: object
-      required:
-      - policies
+      - versions
       - total
-      title: PolicyListResponse
-      description: Paginated response for policy list endpoint.
-    BulkPolicyImportResponse:
-      properties:
-        total:
-          type: integer
-          title: Total
-        successful:
-          type: integer
-          title: Successful
-        failed:
-          type: integer
-          title: Failed
-        results:
-          items:
-            $ref: '#/components/schemas/PolicyImportResult'
-          type: array
-          title: Results
-      type: object
-      required:
-      - total
-      - successful
-      - failed
-      - results
-      title: BulkPolicyImportResponse
-      description: Response for bulk import operation.
+      title: PolicyVersionListResponse
+      description: Response for version list endpoint.
     PolicyDetailResponse:
       properties:
         id:
@@ -983,31 +874,35 @@ components:
       - rules
       title: PolicyDetailResponse
       description: Full policy response with all fields.
-    PolicyExportResponse:
+    PolicyListResponse:
       properties:
         policies:
           items:
-            $ref: '#/components/schemas/PolicyExportData'
+            $ref: '#/components/schemas/PolicyDetailResponse'
           type: array
           title: Policies
-        export_date:
-          type: string
-          format: date-time
-          title: Export Date
-        export_version:
-          type: string
-          title: Export Version
-          default: '1.0'
         total:
           type: integer
           title: Total
+        limit:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Limit
+        offset:
+          type: integer
+          title: Offset
+          default: 0
+        has_more:
+          type: boolean
+          title: Has More
+          default: false
       type: object
       required:
       - policies
-      - export_date
       - total
-      title: PolicyExportResponse
-      description: Response for policy export.
+      title: PolicyListResponse
+      description: Paginated response for policy list endpoint.
     ValidationError:
       properties:
         loc:
@@ -1034,6 +929,110 @@ components:
       - msg
       - type
       title: ValidationError
+    PolicyImportResult:
+      properties:
+        name:
+          type: string
+          title: Name
+        success:
+          type: boolean
+          title: Success
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - name
+      - success
+      title: PolicyImportResult
+      description: Result for a single policy import.
+    PolicyExportResponse:
+      properties:
+        policies:
+          items:
+            $ref: '#/components/schemas/PolicyExportData'
+          type: array
+          title: Policies
+        export_date:
+          type: string
+          format: date-time
+          title: Export Date
+        export_version:
+          type: string
+          title: Export Version
+          default: '1.0'
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - policies
+      - export_date
+      - total
+      title: PolicyExportResponse
+      description: Response for policy export.
+    PolicyVersionSummary:
+      properties:
+        id:
+          type: string
+          title: Id
+        operation:
+          type: string
+          title: Operation
+        timestamp:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Timestamp
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+        diff:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Diff
+      type: object
+      required:
+      - id
+      - operation
+      title: PolicyVersionSummary
+      description: Version metadata for list endpoint.
+    BulkPolicyImportRequest:
+      properties:
+        policies:
+          items:
+            $ref: '#/components/schemas/PolicyExportData'
+          type: array
+          maxItems: 100
+          minItems: 1
+          title: Policies
+      type: object
+      required:
+      - policies
+      title: BulkPolicyImportRequest
+      description: Request body for bulk importing multiple policies.
+    SystemPromptScannerConfig:
+      properties:
+        system_prompt:
+          type: string
+          title: System Prompt
+      type: object
+      title: SystemPromptScannerConfig
+      description: Configuration for the system prompt scanner.
     PolicyImportRequest:
       properties:
         policy:
@@ -1043,11 +1042,12 @@ components:
       - policy
       title: PolicyImportRequest
       description: Request body for importing a single policy.
-    SystemPromptScannerConfig:
+    HTTPValidationError:
       properties:
-        system_prompt:
-          type: string
-          title: System Prompt
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      title: SystemPromptScannerConfig
-      description: Configuration for the system prompt scanner.
+      title: HTTPValidationError

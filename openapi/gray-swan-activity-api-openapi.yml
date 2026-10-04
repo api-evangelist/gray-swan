@@ -118,44 +118,6 @@ paths:
       - Activity
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    StandardErrorResponse:
-      properties:
-        error:
-          type: boolean
-          title: Error
-          default: true
-        message:
-          type: string
-          title: Message
-        detail:
-          type: string
-          title: Detail
-        error_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error Code
-        details:
-          anyOf:
-          - additionalProperties:
-              $ref: '#/components/schemas/JSONValue-Output'
-            type: object
-          - type: 'null'
-          title: Details
-      type: object
-      required:
-      - message
-      - detail
-      title: StandardErrorResponse
     JSONValue-Output:
       anyOf:
       - $ref: '#/components/schemas/JSONPrimitive'
@@ -191,6 +153,35 @@ components:
       - msg
       - type
       title: ValidationError
+    StandardErrorResponse:
+      properties:
+        error:
+          type: boolean
+          title: Error
+          default: true
+        message:
+          type: string
+          title: Message
+        detail:
+          type: string
+          title: Detail
+        error_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Code
+        details:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/JSONValue-Output'
+            type: object
+          - type: 'null'
+          title: Details
+      type: object
+      required:
+      - message
+      - detail
+      title: StandardErrorResponse
     ActivityExportResponse:
       properties:
         activities:
@@ -221,3 +212,12 @@ components:
       - type: number
       - type: boolean
       - type: 'null'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
