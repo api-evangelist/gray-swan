@@ -1,0 +1,12 @@
+{
+ "url": "https://api.grayswan.ai/openapi.json",
+ "requested_url": "https://api.grayswan.ai/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 69797,
+ "sha256": "d717c1638e35fcc1ddeb7066d8e9cf4fb8269ce6f146baa27bc8826b63c18126",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.95), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
