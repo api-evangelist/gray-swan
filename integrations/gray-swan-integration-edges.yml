@@ -1,0 +1,23 @@
+edges:
+- partner_name: OpenAI
+  partner: openai
+  partner_match: domain
+  type: contract
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  evidence: https://github.com/api-evangelist/gray-swan/blob/main/openapi/gray-swan-cygnal-api-openapi.yml#L89
+  contract_reference:
+    repo: gray-swan
+    spec_file: gray-swan-cygnal-api-openapi.yml
+    property: description
+    value: OpenAI-compatible
+    note: 'gray-swan declares OpenAI compatibility: ''description: ''Create OpenAI-compatible chat completions with
+      Cygnal protection.'''
+    detected_by: sweep-model-routing.py
+    detected: '2026-10-13'
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
+generated: '2026-10-13'
+method: searched
+checked: []
